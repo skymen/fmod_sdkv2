@@ -16,6 +16,6 @@ export const disableTips = false;
 export const disableWarnings = false;
 
 export const publishConfig = {
-  addonUrl: "https://www.construct.net/en/make-games/addons/1206/",
+  addonUrl: "https://www.construct.net/en/make-games/addons/1206/fmod",
   autoGenReadme: true,
 };

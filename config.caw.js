@@ -13,7 +13,7 @@ export const version = _version;
 export const author = "skymen";
 export const website = "https://github.com/skymen/fmod_sdkv2";
 export const documentation =
-  "https://www.construct.net/en/make-games/addons/1206/documentation";
+  "https://www.construct.net/en/make-games/addons/1206/fmod/documentation";
 export const description = "Description";
 export const category = ADDON_CATEGORY.MEDIA;
 

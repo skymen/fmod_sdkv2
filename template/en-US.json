@@ -6,7 +6,7 @@
       "skymen_fmod": {
         "name": "(FMOD)",
         "description": "Description",
-        "help-url": "https://www.construct.net/en/make-games/addons/1206/documentation",
+        "help-url": "https://www.construct.net/en/make-games/addons/1206/fmod/documentation",
         "aceCategories": {
           "Aces_Files_In_Category_Folder": "Aces_Files_In_Category_Folder",
           "Ace_Folders_In_Category_Folder": "Ace_Folders_In_Category_Folder",
