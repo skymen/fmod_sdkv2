@@ -1,9 +1,9 @@
 <img src="./examples/cover.webp" width="150" /><br>
 # (FMOD)
-<i>Description</i> <br>
-### Version 1.0.0.0
+<i>FMOD Studio integration for Construct 3</i> <br>
+### Version 2.0.0.0
 
-[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-1.0.0.0.c3addon/skymen_fmod-1.0.0.0.c3addon)
+[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-2.0.0.0.c3addon/skymen_fmod-2.0.0.0.c3addon)
 <br>
 <sub> [See all releases](https://github.com/skymen/fmod_sdkv2/releases) </sub> <br>
 
@@ -39,6 +39,7 @@ npm run dev
 ## Examples Files
 | Description | Download |
 | --- | --- |
+| Murder On Vicuna Street | [<img src="https://placehold.co/120x30/4493f8/FFF?text=Download&font=montserrat" width="120"/>](https://github.com/skymen/fmod_sdkv2/raw/refs/heads/main/examples/Murder%20On%20Vicuna%20Street.c3p) |
 
 ---
 ## Properties
@@ -54,26 +55,48 @@ npm run dev
 ## Actions
 | Action | Description | Params
 | --- | --- | --- |
-| Sample Action | This is a sample action | Param1             *(string)* <br> |
-| Sample Action Async | This is a sample action |  |
-| Sample Action Combo | This is a sample action | Param1             *(combo)* <br> |
-| Sample Action | This is a sample action | Param1             *(string)* <br> |
+| Load Bank | Load the specified FMOD bank. | Name             *(string)* <br> |
+| Unload All Banks | Unload all FMOD banks. |  |
+| Unload Bank | Unload the specified FMOD bank. | Name             *(string)* <br> |
+| Set Bus Muted | Set the muted state of the specified FMOD bus. | Name             *(string)* <br>Muted             *(boolean)* <br> |
+| Set Bus Volume | Set the volume of the specified FMOD bus. | Name             *(string)* <br>Volume             *(number)* <br> |
+| Instantiate Event | Instantiate the specified FMOD event. This doesn't start it. Use this when you need to change the event parameters before starting it. | Name             *(string)* <br>Tags             *(string)* <br> |
+| Release All Event Instances | Release all FMOD event instances. | Name             *(string)* <br> |
+| Release Event Instance | Release the specified FMOD event instance. | Name             *(string)* <br>Tag             *(string)* <br> |
+| Set Event Paused | Set the paused state of the specified FMOD event. | Name             *(string)* <br>Tag             *(string)* <br>Paused             *(boolean)* <br> |
+| Start Event | Start the specified FMOD event. | Name             *(string)* <br>Tag             *(string)* <br>Release             *(boolean)* <br> |
+| Start Event At Object | Start the specified FMOD event at the specified object. | Name             *(string)* <br>Object             *(object)* <br>Tag             *(string)* <br>Release             *(boolean)* <br>Forward Mode             *(combo)* <br> |
+| Start One Time Event | Start the specified FMOD event as a one-time event. This instance will be released immediately. | Name             *(string)* <br> |
+| Stop All Events | Stop all FMOD events. | Name             *(string)* <br>Allow fade out             *(boolean)* <br>Release             *(boolean)* <br> |
+| Stop Event | Stop the specified FMOD event, with an option to allow fade out. | Name             *(string)* <br>Tag             *(string)* <br>Allow fade out             *(boolean)* <br>Release             *(boolean)* <br> |
+| Set Auto Suspend | Set the auto suspend state of FMOD. | Auto suspend             *(boolean)* <br> |
+| Set Suspended | Set the suspended state of FMOD. | Suspended             *(boolean)* <br> |
+| Set Listener 3D Attributes | Set the 3D attributes of the specified FMOD listener. | Id             *(number)* <br>X             *(number)* <br>Y             *(number)* <br>Z             *(number)* <br>Velocity X             *(number)* <br>Velocity Y             *(number)* <br>Velocity Z             *(number)* <br>Forward X             *(number)* <br>Forward Y             *(number)* <br>Forward Z             *(number)* <br>Up X             *(number)* <br>Up Y             *(number)* <br>Up Z             *(number)* <br>Has separate attenuation position             *(boolean)* <br>Attenuation X             *(number)* <br>Attenuation Y             *(number)* <br>Attenuation Z             *(number)* <br> |
+| Set Listener 3D Attributes From Camera | Set the 3D attributes of the specified FMOD listener from the specified camera. | Id             *(number)* <br>Camera             *(object)* <br>Velocity X             *(number)* <br>Velocity Y             *(number)* <br>Velocity Z             *(number)* <br>Has separate attenuation position             *(boolean)* <br>Attenuation X             *(number)* <br>Attenuation Y             *(number)* <br>Attenuation Z             *(number)* <br> |
+| Set Listener 3D Attributes From Scroll Position | Set the 3D attributes of the specified FMOD listener from the scroll position. | Id             *(number)* <br>Velocity X             *(number)* <br>Velocity Y             *(number)* <br>Has separate attenuation position             *(boolean)* <br>Attenuation X             *(number)* <br>Attenuation Y             *(number)* <br> |
+| Set Listener Simple Attributes | Set the simple attributes of the specified FMOD listener. | Id             *(number)* <br>X             *(number)* <br>Y             *(number)* <br>Z             *(number)* <br> |
+| Set Listener Simple Attributes From Scroll Position | Set the simple attributes of the specified FMOD listener from the scroll position. | Id             *(number)* <br> |
+| Set Listener Weight | Set the weight of the specified FMOD listener. | Id             *(number)* <br>Weight             *(number)* <br> |
+| Set Nb Listeners | Set the number of FMOD listeners. | Nb             *(number)* <br> |
+| Set Event Parameter | Set a parameter value for the specified FMOD event. | Name             *(string)* <br>Tag             *(string)* <br>Parameter             *(string)* <br>Value             *(number)* <br>Ignore seek speed             *(boolean)* <br> |
+| Set Event Parameter With Label | Set a parameter value for the specified FMOD event, using the parameter label instead of the parameter name. | Name             *(string)* <br>Tag             *(string)* <br>Parameter             *(string)* <br>Value             *(string)* <br>Ignore seek speed             *(boolean)* <br> |
+| Set Global Parameter | Set a global parameter value for FMOD. | Parameter             *(string)* <br>Value             *(number)* <br>Ignore seek speed             *(boolean)* <br> |
+| Set Global Parameter With Label | Set a global parameter value for FMOD, using the parameter label instead of the parameter name. | Parameter             *(string)* <br>Value             *(string)* <br>Ignore seek speed             *(boolean)* <br> |
+| Set Event 3D Attributes | Set the 3D attributes of the specified FMOD event. | Name             *(string)* <br>Tag             *(string)* <br>X             *(number)* <br>Y             *(number)* <br>Z             *(number)* <br>Velocity X             *(number)* <br>Velocity Y             *(number)* <br>Velocity Z             *(number)* <br>Forward X             *(number)* <br>Forward Y             *(number)* <br>Forward Z             *(number)* <br>Up X             *(number)* <br>Up Y             *(number)* <br>Up Z             *(number)* <br> |
+| Set Event 3D Attributes From Object | Set the 3D attributes of the specified FMOD event from the specified object. | Name             *(string)* <br>Tag             *(string)* <br>Object             *(object)* <br>Forward Mode             *(combo)* <br>Velocity X             *(number)* <br>Velocity Y             *(number)* <br>Velocity Z             *(number)* <br> |
+| Set Event Simple Attributes | Set the 3D attributes of the specified FMOD event. | Name             *(string)* <br>Tag             *(string)* <br>X             *(number)* <br>Y             *(number)* <br>Z             *(number)* <br> |
+| Set Event Simple Attributes From Object | Set the 3D attributes of the specified FMOD event from the specified object. | Name             *(string)* <br>Tag             *(string)* <br>Object             *(object)* <br>Forward Mode             *(combo)* <br> |
+| Set VCA Volume | Set the volume of the specified FMOD VCA. | Name             *(string)* <br>Volume             *(number)* <br> |
 
 
 ---
 ## Conditions
 | Condition | Description | Params
 | --- | --- | --- |
-| Sample Condition | This is a sample condition | Param1 *(string)* <br> |
-| Sample Trigger | This is a sample trigger |  |
-| Sample Condition | This is a sample condition | Param1 *(combo)* <br> |
-| Sample Condition | This is a sample condition |  |
+| Is Initialised | True if FMOD is initialised. |  |
 
 
 ---
 ## Expressions
 | Expression | Description | Return Type | Params
 | --- | --- | --- | --- |
-| Expression | Sample Expression | number |  | 
-| Expression2 | Sample Expression | string |  | 
-| SampleExpression | This is a sample expression | string |  | 

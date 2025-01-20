@@ -4,7 +4,7 @@ import Joi from "joi";
 const paramSchema = Joi.object({
   id: Joi.string().required(),
   name: Joi.string().required(),
-  desc: Joi.string().required(),
+  desc: Joi.string().required().allow(""),
   type: Joi.string()
     .required()
     .valid(
@@ -82,7 +82,7 @@ const conditionSchema = Joi.object({
 const expressionParamSchema = Joi.object({
   id: Joi.string().required(),
   name: Joi.string().required(),
-  desc: Joi.string().required(),
+  desc: Joi.string().required().allow(""),
   type: Joi.string().required().valid("number", "string", "any"),
 });
 
@@ -118,7 +118,7 @@ const propertySchema = Joi.object({
 
   id: Joi.string().required(),
   name: Joi.string().required(),
-  desc: Joi.string().required(),
+  desc: Joi.string().required().allow(""),
 
   options: Joi.object({
     initialValue: Joi.when("...type", {

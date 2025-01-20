@@ -5,12 +5,17 @@
     "plugins": {
       "skymen_fmod": {
         "name": "(FMOD)",
-        "description": "Description",
+        "description": "FMOD Studio integration for Construct 3",
         "help-url": "https://www.construct.net/en/make-games/addons/1206/fmod/documentation",
         "aceCategories": {
-          "Aces_Files_In_Category_Folder": "Aces_Files_In_Category_Folder",
-          "Ace_Folders_In_Category_Folder": "Ace_Folders_In_Category_Folder",
-          "Aces_In_Single_File": "Aces_In_Single_File"
+          "bank": "Bank",
+          "bus": "Bus",
+          "event": "Event",
+          "general": "General",
+          "listeners": "Listeners",
+          "parameter": "Parameter",
+          "positional": "Positional Events",
+          "vca": "VCA"
         },
         "properties": {
           "allBanks": {
@@ -31,107 +36,731 @@
           }
         },
         "actions": {
-          "Action": {
-            "list-name": "Sample Action",
-            "display-text": "Sample Action {0}",
-            "description": "This is a sample action",
+          "LoadBank": {
+            "list-name": "Load Bank",
+            "display-text": "Load bank [i]{0}[/i]",
+            "description": "Load the specified FMOD bank.",
             "params": {
-              "param1": {
-                "name": "Param1",
-                "desc": "This is a sample param"
+              "name": {
+                "name": "Name",
+                "desc": "The name of the bank"
               }
             }
           },
-          "AsyncAction": {
-            "list-name": "Sample Action Async",
-            "display-text": "Sample Action Async",
-            "description": "This is a sample action",
+          "UnloadAllBanks": {
+            "list-name": "Unload All Banks",
+            "display-text": "Unload all banks",
+            "description": "Unload all FMOD banks.",
             "params": {}
           },
-          "ActionCombo": {
-            "list-name": "Sample Action Combo",
-            "display-text": "Sample Action Combo {0}",
-            "description": "This is a sample action",
+          "UnloadBank": {
+            "list-name": "Unload Bank",
+            "display-text": "Unload bank [i]{0}[/i]",
+            "description": "Unload the specified FMOD bank.",
             "params": {
-              "param1": {
-                "name": "Param1",
-                "desc": "This is a sample param",
+              "name": {
+                "name": "Name",
+                "desc": "The name of the bank"
+              }
+            }
+          },
+          "SetBusMuted": {
+            "list-name": "Set Bus Muted",
+            "display-text": "Set bus [i]{0}[/i] muted: [i]{1}[/i]",
+            "description": "Set the muted state of the specified FMOD bus.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": ""
+              },
+              "muted": {
+                "name": "Muted",
+                "desc": ""
+              }
+            }
+          },
+          "SetBusVolume": {
+            "list-name": "Set Bus Volume",
+            "display-text": "Set bus [i]{0}[/i] volume to [i]{1}[/i]",
+            "description": "Set the volume of the specified FMOD bus.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": ""
+              },
+              "volume": {
+                "name": "Volume",
+                "desc": ""
+              }
+            }
+          },
+          "InstantiateEvent": {
+            "list-name": "Instantiate Event",
+            "display-text": "Instantiate event [i]{0}[/i] with tags [i]{1}[/i]",
+            "description": "Instantiate the specified FMOD event. This doesn't start it. Use this when you need to change the event parameters before starting it.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": "The name of the event"
+              },
+              "tags": {
+                "name": "Tags",
+                "desc": "A space-separated list of tags"
+              }
+            }
+          },
+          "ReleaseAllEventInstances": {
+            "list-name": "Release All Event Instances",
+            "display-text": "Release all event instances [i]{0}[/i]",
+            "description": "Release all FMOD event instances.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": ""
+              }
+            }
+          },
+          "ReleaseEventInstance": {
+            "list-name": "Release Event Instance",
+            "display-text": "Release event instance [i]{0}[/i] with tag [i]{1}[/i]",
+            "description": "Release the specified FMOD event instance.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": "The name of the event"
+              },
+              "tag": {
+                "name": "Tag",
+                "desc": "A given tag to target"
+              }
+            }
+          },
+          "SetEventPaused": {
+            "list-name": "Set Event Paused",
+            "display-text": "Set event [i]{0}[/i] with tag [i]{1}[/i] paused: [i]{2}[/i]",
+            "description": "Set the paused state of the specified FMOD event.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": ""
+              },
+              "tag": {
+                "name": "Tag",
+                "desc": ""
+              },
+              "paused": {
+                "name": "Paused",
+                "desc": ""
+              }
+            }
+          },
+          "StartEvent": {
+            "list-name": "Start Event",
+            "display-text": "Start event [i]{0}[/i] with tag [i]{1}[/i] (destroy: {2})",
+            "description": "Start the specified FMOD event.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": "The name of the event"
+              },
+              "tag": {
+                "name": "Tag",
+                "desc": "A given tag to target"
+              },
+              "destroyWhenStopped": {
+                "name": "Release",
+                "desc": "Releasing this event will free its memory when it stops playing and will remove it from the tag on the next tick"
+              }
+            }
+          },
+          "StartEventAtObject": {
+            "list-name": "Start Event At Object",
+            "display-text": "Start event [i]{0}[/i] with tag [i]{2}[/i] at object [i]{1}[/i] (destroy: {3}, forward mode: {4})",
+            "description": "Start the specified FMOD event at the specified object.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": "The name of the event"
+              },
+              "object": {
+                "name": "Object",
+                "desc": "The object to start the event at"
+              },
+              "tag": {
+                "name": "Tag",
+                "desc": "A given tag to target"
+              },
+              "destroyWhenStopped": {
+                "name": "Release",
+                "desc": "Releasing this event will free its memory when it stops playing and will remove it from the tag on the next tick"
+              },
+              "forwardMode": {
+                "name": "Forward Mode",
+                "desc": "The forward mode",
                 "items": {
-                  "test": "test",
-                  "test2": "test2"
+                  "camera": "2D",
+                  "angle": "3D"
                 }
               }
             }
           },
-          "SampleAction": {
-            "list-name": "Sample Action",
-            "display-text": "Sample Action {0}",
-            "description": "This is a sample action",
+          "StartOneTimeEvent": {
+            "list-name": "Start One Time Event",
+            "display-text": "Start one time event [i]{0}[/i]",
+            "description": "Start the specified FMOD event as a one-time event. This instance will be released immediately.",
             "params": {
-              "param1": {
-                "name": "Param1",
-                "desc": "This is a sample param"
+              "name": {
+                "name": "Name",
+                "desc": "The name of the event"
+              }
+            }
+          },
+          "StopAllEventInstances": {
+            "list-name": "Stop All Events",
+            "display-text": "Stop all events [i]{0}[/i] (allow fade out: [i]{1}[/i], release: [i]{2}[/i])",
+            "description": "Stop all FMOD events.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": "The name of the event"
+              },
+              "allowFadeOut": {
+                "name": "Allow fade out",
+                "desc": ""
+              },
+              "release": {
+                "name": "Release",
+                "desc": "Releasing this event will free its memory when it stops playing and will remove it from the tag."
+              }
+            }
+          },
+          "StopEventInstance": {
+            "list-name": "Stop Event",
+            "display-text": "Stop event [i]{0}[/i] with tag [i]{1}[/i] (allow fade out: [i]{2}[/i], release: [i]{3}[/i])",
+            "description": "Stop the specified FMOD event, with an option to allow fade out.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": "The name of the event"
+              },
+              "tag": {
+                "name": "Tag",
+                "desc": "A given tag to target"
+              },
+              "allowFadeOut": {
+                "name": "Allow fade out",
+                "desc": ""
+              },
+              "release": {
+                "name": "Release",
+                "desc": "Releasing this event will free its memory when it stops playing and will remove it from the tag."
+              }
+            }
+          },
+          "SetAutoSuspend": {
+            "list-name": "Set Auto Suspend",
+            "display-text": "Set auto suspend to [i]{0}[/i]",
+            "description": "Set the auto suspend state of FMOD.",
+            "params": {
+              "autoSuspend": {
+                "name": "Auto suspend",
+                "desc": ""
+              }
+            }
+          },
+          "SetSuspended": {
+            "list-name": "Set Suspended",
+            "display-text": "Set suspended to [i]{0}[/i]",
+            "description": "Set the suspended state of FMOD.",
+            "params": {
+              "suspended": {
+                "name": "Suspended",
+                "desc": ""
+              }
+            }
+          },
+          "SetListener3DAttributes": {
+            "list-name": "Set Listener 3D Attributes",
+            "display-text": "Set listener [i]{0}[/i] 3D attributes: position: ([i]{1}[/i], [i]{2}[/i], [i]{3}[/i]), velocity: ([i]{4}[/i], [i]{5}[/i], [i]{6}[/i]), forward: ([i]{7}[/i], [i]{8}[/i], [i]{9}[/i]), up: ([i]{10}[/i], [i]{11}[/i], [i]{12}[/i]), attenuation? ([i]{13}[/i]) : ([i]{14}[/i], [i]{15}[/i], [i]{16}[/i])",
+            "description": "Set the 3D attributes of the specified FMOD listener.",
+            "params": {
+              "id": {
+                "name": "Id",
+                "desc": "The listener id from 0 to 7"
+              },
+              "x": {
+                "name": "X",
+                "desc": ""
+              },
+              "y": {
+                "name": "Y",
+                "desc": ""
+              },
+              "z": {
+                "name": "Z",
+                "desc": ""
+              },
+              "velocity-x": {
+                "name": "Velocity X",
+                "desc": ""
+              },
+              "velocity-y": {
+                "name": "Velocity Y",
+                "desc": ""
+              },
+              "velocity-z": {
+                "name": "Velocity Z",
+                "desc": ""
+              },
+              "forward-x": {
+                "name": "Forward X",
+                "desc": ""
+              },
+              "forward-y": {
+                "name": "Forward Y",
+                "desc": ""
+              },
+              "forward-z": {
+                "name": "Forward Z",
+                "desc": ""
+              },
+              "up-x": {
+                "name": "Up X",
+                "desc": ""
+              },
+              "up-y": {
+                "name": "Up Y",
+                "desc": ""
+              },
+              "up-z": {
+                "name": "Up Z",
+                "desc": ""
+              },
+              "hasSeparateAttenuationPosition": {
+                "name": "Has separate attenuation position",
+                "desc": ""
+              },
+              "attenuation-x": {
+                "name": "Attenuation X",
+                "desc": ""
+              },
+              "attenuation-y": {
+                "name": "Attenuation Y",
+                "desc": ""
+              },
+              "attenuation-z": {
+                "name": "Attenuation Z",
+                "desc": ""
+              }
+            }
+          },
+          "SetListener3DAttributesFromCamera": {
+            "list-name": "Set Listener 3D Attributes From Camera",
+            "display-text": "Set listener [i]{0}[/i] 3D attributes from camera [i]{1}[/i]: velocity: ([i]{2}[/i], [i]{3}[/i], [i]{4}[/i]), attenuation? ([i]{5}[/i]) : ([i]{6}[/i], [i]{7}[/i], [i]{8}[/i])",
+            "description": "Set the 3D attributes of the specified FMOD listener from the specified camera.",
+            "params": {
+              "id": {
+                "name": "Id",
+                "desc": "The listener id from 0 to 7"
+              },
+              "camera": {
+                "name": "Camera",
+                "desc": ""
+              },
+              "velocity-x": {
+                "name": "Velocity X",
+                "desc": ""
+              },
+              "velocity-y": {
+                "name": "Velocity Y",
+                "desc": ""
+              },
+              "velocity-z": {
+                "name": "Velocity Z",
+                "desc": ""
+              },
+              "hasSeparateAttenuationPosition": {
+                "name": "Has separate attenuation position",
+                "desc": ""
+              },
+              "attenuation-x": {
+                "name": "Attenuation X",
+                "desc": ""
+              },
+              "attenuation-y": {
+                "name": "Attenuation Y",
+                "desc": ""
+              },
+              "attenuation-z": {
+                "name": "Attenuation Z",
+                "desc": ""
+              }
+            }
+          },
+          "SetListener3DAttributesFromScrollPosition": {
+            "list-name": "Set Listener 3D Attributes From Scroll Position",
+            "display-text": "Set listener [i]{0}[/i] 3D attributes from scroll position: velocity: ([i]{1}[/i], [i]{2}[/i]), attenuation? ([i]{3}[/i]) : ([i]{4}[/i], [i]{5}[/i])",
+            "description": "Set the 3D attributes of the specified FMOD listener from the scroll position.",
+            "params": {
+              "id": {
+                "name": "Id",
+                "desc": "The listener id from 0 to 7"
+              },
+              "velocity-x": {
+                "name": "Velocity X",
+                "desc": ""
+              },
+              "velocity-y": {
+                "name": "Velocity Y",
+                "desc": ""
+              },
+              "hasSeparateAttenuationPosition": {
+                "name": "Has separate attenuation position",
+                "desc": ""
+              },
+              "attenuation-x": {
+                "name": "Attenuation X",
+                "desc": ""
+              },
+              "attenuation-y": {
+                "name": "Attenuation Y",
+                "desc": ""
+              }
+            }
+          },
+          "SetListenerSimpleAttributes": {
+            "list-name": "Set Listener Simple Attributes",
+            "display-text": "Set listener [i]{0}[/i] simple attributes: position: ([i]{1}[/i], [i]{2}[/i], [i]{3}[/i])",
+            "description": "Set the simple attributes of the specified FMOD listener.",
+            "params": {
+              "id": {
+                "name": "Id",
+                "desc": "The listener id from 0 to 7"
+              },
+              "x": {
+                "name": "X",
+                "desc": ""
+              },
+              "y": {
+                "name": "Y",
+                "desc": ""
+              },
+              "z": {
+                "name": "Z",
+                "desc": ""
+              }
+            }
+          },
+          "SetListenerSimpleAttributesFromScrollPosition": {
+            "list-name": "Set Listener Simple Attributes From Scroll Position",
+            "display-text": "Set listener [i]{0}[/i] simple attributes from scroll position",
+            "description": "Set the simple attributes of the specified FMOD listener from the scroll position.",
+            "params": {
+              "id": {
+                "name": "Id",
+                "desc": "The listener id from 0 to 7"
+              }
+            }
+          },
+          "SetListenerWeight": {
+            "list-name": "Set Listener Weight",
+            "display-text": "Set listener [i]{0}[/i] weight to [i]{1}[/i]",
+            "description": "Set the weight of the specified FMOD listener.",
+            "params": {
+              "id": {
+                "name": "Id",
+                "desc": "The listener id from 0 to 7"
+              },
+              "weight": {
+                "name": "Weight",
+                "desc": "0-1"
+              }
+            }
+          },
+          "SetNbListeners": {
+            "list-name": "Set Nb Listeners",
+            "display-text": "Set nb listeners to [i]{0}[/i]",
+            "description": "Set the number of FMOD listeners.",
+            "params": {
+              "nb": {
+                "name": "Nb",
+                "desc": "A number of listeners, from 1 to 8"
+              }
+            }
+          },
+          "SetEventParameter": {
+            "list-name": "Set Event Parameter",
+            "display-text": "Set event parameter [i]{2}[/i] on event [i]{0}[/i] with tags [i]{1}[/i] to [i]{3}[/i] (ignore seek speed: [i]{4}[/i])",
+            "description": "Set a parameter value for the specified FMOD event.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": "The name of the event"
+              },
+              "tag": {
+                "name": "Tag",
+                "desc": "A given tag to target"
+              },
+              "parameter": {
+                "name": "Parameter",
+                "desc": "The name of the parameter"
+              },
+              "value": {
+                "name": "Value",
+                "desc": ""
+              },
+              "ignoreSeekSpeed": {
+                "name": "Ignore seek speed",
+                "desc": ""
+              }
+            }
+          },
+          "SetEventParameterWithLabel": {
+            "list-name": "Set Event Parameter With Label",
+            "display-text": "Set event parameter [i]{2}[/i] on event [i]{0}[/i] with tags [i]{1}[/i] to label [i]{3}[/i] (ignore seek speed: [i]{4}[/i])",
+            "description": "Set a parameter value for the specified FMOD event, using the parameter label instead of the parameter name.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": ""
+              },
+              "tag": {
+                "name": "Tag",
+                "desc": "A given tag to target"
+              },
+              "parameter": {
+                "name": "Parameter",
+                "desc": "The name of the parameter"
+              },
+              "value": {
+                "name": "Value",
+                "desc": ""
+              },
+              "ignoreSeekSpeed": {
+                "name": "Ignore seek speed",
+                "desc": ""
+              }
+            }
+          },
+          "SetGlobalParameter": {
+            "list-name": "Set Global Parameter",
+            "display-text": "Set global parameter [i]{0}[/i] to [i]{1}[/i] (ignore seek speed: [i]{2}[/i])",
+            "description": "Set a global parameter value for FMOD.",
+            "params": {
+              "parameter": {
+                "name": "Parameter",
+                "desc": "The name of the parameter"
+              },
+              "value": {
+                "name": "Value",
+                "desc": ""
+              },
+              "ignoreSeekSpeed": {
+                "name": "Ignore seek speed",
+                "desc": ""
+              }
+            }
+          },
+          "SetGlobalParameterWithLabel": {
+            "list-name": "Set Global Parameter With Label",
+            "display-text": "Set global parameter [i]{0}[/i] to label [i]{1}[/i] (ignore seek speed: [i]{2}[/i])",
+            "description": "Set a global parameter value for FMOD, using the parameter label instead of the parameter name.",
+            "params": {
+              "parameter": {
+                "name": "Parameter",
+                "desc": "The name of the parameter"
+              },
+              "value": {
+                "name": "Value",
+                "desc": ""
+              },
+              "ignoreSeekSpeed": {
+                "name": "Ignore seek speed",
+                "desc": ""
+              }
+            }
+          },
+          "SetEvent3DAttributes": {
+            "list-name": "Set Event 3D Attributes",
+            "display-text": "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes: position: ([i]{2}[/i], [i]{3}[/i], [i]{4}[/i]), velocity: ([i]{5}[/i], [i]{6}[/i], [i]{7}[/i]), forward: ([i]{8}[/i], [i]{9}[/i], [i]{10}[/i]), up: ([i]{11}[/i], [i]{12}[/i], [i]{13}[/i])",
+            "description": "Set the 3D attributes of the specified FMOD event.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": ""
+              },
+              "tag": {
+                "name": "Tag",
+                "desc": ""
+              },
+              "x": {
+                "name": "X",
+                "desc": ""
+              },
+              "y": {
+                "name": "Y",
+                "desc": ""
+              },
+              "z": {
+                "name": "Z",
+                "desc": ""
+              },
+              "velocity-x": {
+                "name": "Velocity X",
+                "desc": ""
+              },
+              "velocity-y": {
+                "name": "Velocity Y",
+                "desc": ""
+              },
+              "velocity-z": {
+                "name": "Velocity Z",
+                "desc": ""
+              },
+              "forward-x": {
+                "name": "Forward X",
+                "desc": ""
+              },
+              "forward-y": {
+                "name": "Forward Y",
+                "desc": ""
+              },
+              "forward-z": {
+                "name": "Forward Z",
+                "desc": ""
+              },
+              "up-x": {
+                "name": "Up X",
+                "desc": ""
+              },
+              "up-y": {
+                "name": "Up Y",
+                "desc": ""
+              },
+              "up-z": {
+                "name": "Up Z",
+                "desc": ""
+              }
+            }
+          },
+          "SetEvent3DAttributesFromObject": {
+            "list-name": "Set Event 3D Attributes From Object",
+            "display-text": "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes from object [i]{2}[/i] (forward mode: [i]{3}[/i]) velocity: ([i]{4}[/i], [i]{5}[/i], [i]{6}[/i])",
+            "description": "Set the 3D attributes of the specified FMOD event from the specified object.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": ""
+              },
+              "tag": {
+                "name": "Tag",
+                "desc": ""
+              },
+              "object": {
+                "name": "Object",
+                "desc": ""
+              },
+              "forwardMode": {
+                "name": "Forward Mode",
+                "desc": "",
+                "items": {
+                  "camera": "2D",
+                  "angle": "3D"
+                }
+              },
+              "velocity-x": {
+                "name": "Velocity X",
+                "desc": ""
+              },
+              "velocity-y": {
+                "name": "Velocity Y",
+                "desc": ""
+              },
+              "velocity-z": {
+                "name": "Velocity Z",
+                "desc": ""
+              }
+            }
+          },
+          "SetEventSimpleAttributes": {
+            "list-name": "Set Event Simple Attributes",
+            "display-text": "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes: position: ([i]{2}[/i], [i]{3}[/i], [i]{4}[/i])",
+            "description": "Set the 3D attributes of the specified FMOD event.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": ""
+              },
+              "tag": {
+                "name": "Tag",
+                "desc": ""
+              },
+              "x": {
+                "name": "X",
+                "desc": ""
+              },
+              "y": {
+                "name": "Y",
+                "desc": ""
+              },
+              "z": {
+                "name": "Z",
+                "desc": ""
+              }
+            }
+          },
+          "SetEventSimpleAttributesFromObject": {
+            "list-name": "Set Event Simple Attributes From Object",
+            "display-text": "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes from object [i]{2}[/i] (forward mode: [i]{3}[/i])",
+            "description": "Set the 3D attributes of the specified FMOD event from the specified object.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": ""
+              },
+              "tag": {
+                "name": "Tag",
+                "desc": ""
+              },
+              "object": {
+                "name": "Object",
+                "desc": ""
+              },
+              "forwardMode": {
+                "name": "Forward Mode",
+                "desc": "",
+                "items": {
+                  "camera": "Camera",
+                  "angle": "Angle"
+                }
+              }
+            }
+          },
+          "SetVCAVolume": {
+            "list-name": "Set VCA Volume",
+            "display-text": "Set VCA [i]{0}[/i] volume to [i]{1}[/i]",
+            "description": "Set the volume of the specified FMOD VCA.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": ""
+              },
+              "volume": {
+                "name": "Volume",
+                "desc": ""
               }
             }
           }
         },
         "conditions": {
-          "Condition": {
-            "list-name": "Sample Condition",
-            "display-text": "Sample Condition {0}",
-            "description": "This is a sample condition",
-            "params": {
-              "param1": {
-                "name": "Param1",
-                "desc": "This is a sample param"
-              }
-            }
-          },
-          "Trigger": {
-            "list-name": "Sample Trigger",
-            "display-text": "Sample Trigger",
-            "description": "This is a sample trigger",
-            "params": {}
-          },
-          "ConditionCombo": {
-            "list-name": "Sample Condition",
-            "display-text": "Sample Condition {0}",
-            "description": "This is a sample condition",
-            "params": {
-              "param1": {
-                "name": "Param1",
-                "desc": "This is a sample param",
-                "items": {
-                  "TRUE": "True",
-                  "FALSE": "False"
-                }
-              }
-            }
-          },
-          "SampleCondition": {
-            "list-name": "Sample Condition",
-            "display-text": "Sample Condition",
-            "description": "This is a sample condition",
+          "IsInitialised": {
+            "list-name": "Is Initialised",
+            "display-text": "Is initialised",
+            "description": "True if FMOD is initialised.",
             "params": {}
           }
         },
-        "expressions": {
-          "Expression": {
-            "translated-name": "Expression",
-            "description": "Sample Expression",
-            "params": {}
-          },
-          "Expression2": {
-            "translated-name": "Expression2",
-            "description": "Sample Expression",
-            "params": {}
-          },
-          "SampleExpression": {
-            "translated-name": "SampleExpression",
-            "description": "This is a sample expression",
-            "params": {}
-          }
-        }
+        "expressions": {}
       }
     }
   }
