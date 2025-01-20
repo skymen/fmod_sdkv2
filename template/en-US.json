@@ -1,18 +1,35 @@
 {
   "languageTag": "en-US",
-  "fileDescription": "Strings for sample_addon.",
+  "fileDescription": "Strings for skymen_fmod.",
   "text": {
     "plugins": {
-      "sample_addon": {
-        "name": "Sample Addon",
+      "skymen_fmod": {
+        "name": "(FMOD)",
         "description": "Description",
-        "help-url": "https://www.construct.net",
+        "help-url": "https://www.construct.net/en/make-games/addons/1206/documentation",
         "aceCategories": {
           "Aces_Files_In_Category_Folder": "Aces_Files_In_Category_Folder",
           "Ace_Folders_In_Category_Folder": "Ace_Folders_In_Category_Folder",
           "Aces_In_Single_File": "Aces_In_Single_File"
         },
-        "properties": {},
+        "properties": {
+          "allBanks": {
+            "name": "All Banks",
+            "desc": "All the banks that will be used by the game. One bank path per line."
+          },
+          "preloadBanks": {
+            "name": "Preload Banks",
+            "desc": "The banks that will be preloaded. One bank path per line."
+          },
+          "preloadBanksNonBlocking": {
+            "name": "Load Banks (Non Blocking)",
+            "desc": "The banks that will be loaded as soon as possible but will not prevent the game from starting. One bank path per line."
+          },
+          "autoSuspend": {
+            "name": "Auto Suspend",
+            "desc": "Automatically suspend FMOD when the game is suspended. Disable this if you want to control the suspend state manually."
+          }
+        },
         "actions": {
           "Action": {
             "list-name": "Sample Action",

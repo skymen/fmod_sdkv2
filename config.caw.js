@@ -7,14 +7,15 @@ import {
 import _version from "./version.js";
 export const addonType = ADDON_TYPE.PLUGIN;
 export const type = PLUGIN_TYPE.OBJECT;
-export const id = "sample_addon";
-export const name = "Sample Addon";
+export const id = "skymen_fmod";
+export const name = "(FMOD)";
 export const version = _version;
 export const author = "skymen";
-export const website = "https://www.construct.net";
-export const documentation = "https://www.construct.net";
+export const website = "https://github.com/skymen/fmod_sdkv2";
+export const documentation =
+  "https://www.construct.net/en/make-games/addons/1206/documentation";
 export const description = "Description";
-export const category = ADDON_CATEGORY.GENERAL;
+export const category = ADDON_CATEGORY.MEDIA;
 
 export const hasDomside = false;
 export const files = {
@@ -23,7 +24,16 @@ export const files = {
 };
 
 // categories that are not filled will use the folder name
-export const aceCategories = {};
+export const aceCategories = {
+  bank: "Bank",
+  bus: "Bus",
+  vca: "VCA",
+  event: "Event",
+  parameter: "Parameter",
+  positional: "Positional Events",
+  listeners: "Listeners",
+  general: "General",
+};
 
 export const info = {
   // icon: "icon.svg",
@@ -100,4 +110,40 @@ export const properties = [
     desc: "Property Description",
   }
   */
+  {
+    type: "longtext",
+    id: "allBanks",
+    options: {
+      initialValue: "",
+    },
+    name: "All Banks",
+    desc: "All the banks that will be used by the game. One bank path per line.",
+  },
+  {
+    type: "longtext",
+    id: "preloadBanks",
+    options: {
+      initialValue: "",
+    },
+    name: "Preload Banks",
+    desc: "The banks that will be preloaded. One bank path per line.",
+  },
+  {
+    type: "longtext",
+    id: "preloadBanksNonBlocking",
+    options: {
+      initialValue: "",
+    },
+    name: "Load Banks (Non Blocking)",
+    desc: "The banks that will be loaded as soon as possible but will not prevent the game from starting. One bank path per line.",
+  },
+  {
+    type: "check",
+    id: "autoSuspend",
+    options: {
+      initialValue: true,
+    },
+    name: "Auto Suspend",
+    desc: "Automatically suspend FMOD when the game is suspended. Disable this if you want to control the suspend state manually.",
+  },
 ];
