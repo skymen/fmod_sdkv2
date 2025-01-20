@@ -1,4 +1,4 @@
-<img src="./src/icon.svg" width="100" /><br>
+<img src="./examples/cover.webp" width="150" /><br>
 # (FMOD)
 <i>Description</i> <br>
 ### Version 1.0.0.0
