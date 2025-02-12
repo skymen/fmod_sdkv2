@@ -76,13 +76,12 @@ export default function (parentClass) {
         })
       );
 
-      // throw new Error("Not implemented");
-      // this._runtime.Dispatcher().addEventListener("suspend", () => {
-      //   this.OnSuspend(true);
-      // });
-      // this._runtime.Dispatcher().addEventListener("resume", () => {
-      //   this.OnSuspend(false);
-      // });
+      this.runtime.addEventListener("suspend", () => {
+        this.OnSuspend(true);
+      });
+      this.runtime.addEventListener("resume", () => {
+        this.OnSuspend(false);
+      });
       this._setTicking(true);
     }
 
