@@ -224,7 +224,7 @@
           },
           "StartEventAtObject": {
             "list-name": "Start Event At Object",
-            "display-text": "Start event [i]{0}[/i] with tag [i]{2}[/i] at object [i]{1}[/i] (destroy: {3}, forward mode: {4}, autoUpdate: [i]{5}[/i], autoVelocity: [i]{6}[/i])",
+            "display-text": "Start event [i]{0}[/i] with tag [i]{1}[/i] at object [i]{2}[/i] at image point [i]{3}[/i] (destroy: [i]{4}[/i], forward mode: [i]{5}[/i], autoUpdate: [i]{6}[/i], autoVelocity: [i]{7}[/i])",
             "description": "Start the specified FMOD event at the specified object.",
             "params": {
               "name": {
@@ -234,6 +234,10 @@
               "object": {
                 "name": "Object",
                 "desc": "The object to start the event at"
+              },
+              "imagePoint": {
+                "name": "Image Point",
+                "desc": "The image point to start the event at"
               },
               "tag": {
                 "name": "Tag",
@@ -702,7 +706,7 @@
           },
           "SetEvent3DAttributesFromObject": {
             "list-name": "Set Event 3D Attributes From Object",
-            "display-text": "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes from object [i]{2}[/i] (forward mode: [i]{3}[/i]) velocity: ([i]{4}[/i], [i]{5}[/i], [i]{6}[/i])",
+            "display-text": "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes from object [i]{2}[/i] at image point [i]{3}[/i] (forward mode: [i]{4}[/i], velocity: [i]({5}, {6}, {7})[/i])",
             "description": "Set the 3D attributes of the specified FMOD event from the specified object.",
             "params": {
               "name": {
@@ -716,6 +720,10 @@
               "object": {
                 "name": "Object",
                 "desc": "The object to get position and orientation from"
+              },
+              "imagePoint": {
+                "name": "Image Point",
+                "desc": "The image point to start the event at"
               },
               "forwardMode": {
                 "name": "Forward Mode",
@@ -768,7 +776,7 @@
           },
           "SetEventSimpleAttributesFromObject": {
             "list-name": "Set Event Simple Attributes From Object",
-            "display-text": "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes from object [i]{2}[/i] (forward mode: [i]{3}[/i], autoUpdate: [i]{4}[/i], autoVelocity: [i]{5}[/i])",
+            "display-text": "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes from object [i]{2}[/i] at image point [i]{3}[/i] (forward mode: [i]{4}[/i], autoUpdate: [i]{5}[/i], autoVelocity: [i]{6}[/i])",
             "description": "Set the 3D attributes of the specified FMOD event from the specified object.",
             "params": {
               "name": {
@@ -782,6 +790,10 @@
               "object": {
                 "name": "Object",
                 "desc": "The object to get position and orientation from"
+              },
+              "imagePoint": {
+                "name": "Image Point",
+                "desc": "The image point to start the event at"
               },
               "forwardMode": {
                 "name": "Forward Mode",

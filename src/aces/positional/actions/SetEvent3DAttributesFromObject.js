@@ -3,7 +3,7 @@ export const config = {
   isAsync: true,
   listName: "Set Event 3D Attributes From Object",
   displayText:
-    "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes from object [i]{2}[/i] (forward mode: [i]{3}[/i]) velocity: ([i]{4}[/i], [i]{5}[/i], [i]{6}[/i])",
+    "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes from object [i]{2}[/i] at image point [i]{3}[/i] (forward mode: [i]{4}[/i], velocity: [i]({5}, {6}, {7})[/i])",
   description:
     "Set the 3D attributes of the specified FMOD event from the specified object.",
   params: [
@@ -29,6 +29,13 @@ export const config = {
       desc: "The object to get position and orientation from",
       type: "object",
       allowedPluginIds: ["<world>"],
+    },
+    {
+      id: "imagePoint",
+      name: "Image Point",
+      desc: "The image point to start the event at",
+      type: "any",
+      initialValue: "0",
     },
     {
       id: "forwardMode",
@@ -68,6 +75,7 @@ export default async function (
   name,
   tag,
   objectClass,
+  imagePoint,
   forwardMode,
   vx,
   vy,
@@ -79,6 +87,7 @@ export default async function (
     name,
     tag,
     inst,
+    imagePoint,
     forwardMode,
     vx,
     vy,

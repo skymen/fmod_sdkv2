@@ -18,6 +18,13 @@ export const config = {
       allowedPluginIds: ["<world>"],
     },
     {
+      id: "imagePoint",
+      name: "Image Point",
+      desc: "The image point to start the event at",
+      type: "any",
+      initialValue: "0",
+    },
+    {
       id: "tag",
       name: "Tag",
       desc: "The tag of the event instance",
@@ -57,7 +64,7 @@ export const config = {
   ],
   listName: "Start Event At Object",
   displayText:
-    "Start event [i]{0}[/i] with tag [i]{2}[/i] at object [i]{1}[/i] (destroy: {3}, forward mode: {4}, autoUpdate: [i]{5}[/i], autoVelocity: [i]{6}[/i])",
+    "Start event [i]{0}[/i] with tag [i]{1}[/i] at object [i]{2}[/i] at image point [i]{3}[/i] (destroy: [i]{4}[/i], forward mode: [i]{5}[/i], autoUpdate: [i]{6}[/i], autoVelocity: [i]{7}[/i])",
   description: "Start the specified FMOD event at the specified object.",
 };
 
@@ -67,6 +74,7 @@ export default async function (
   name,
   tag,
   objectClass,
+  imagePoint,
   destroyWhenStopped,
   forwardMode,
   autoUpdate,
@@ -80,6 +88,7 @@ export default async function (
     name,
     tag,
     inst,
+    imagePoint,
     forwardMode,
     0, //vx,
     0, //vy,
@@ -90,7 +99,8 @@ export default async function (
     this.addEvent3DAutoUpdate(
       name,
       tag,
-      objectClass,
+      inst,
+      imagePoint,
       forwardMode,
       autoVelocity
     );

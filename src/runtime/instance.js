@@ -117,13 +117,14 @@ export default function (parentClass) {
       name,
       tag,
       inst,
+      imagePoint,
       forwardMode,
       vx,
       vy,
       vz
     ) {
       if (!this.curInst) return;
-      const [x, y, z] = [inst.x, inst.y, inst.totalZElevation];
+      const [x, y, z] = this.getPositionFromObject(inst, imagePoint);
       const angle = inst.angle;
       let fx = 0;
       let fy = 0;
@@ -158,7 +159,19 @@ export default function (parentClass) {
       );
     }
 
-    addEvent3DAutoUpdate(name, tag, inst, forwardMode, autoVelocity) {
+    getPositionFromObject(inst, imagePoint) {
+      if (inst.getImagePoint) return inst.getImagePoint(imagePoint);
+      return [inst.x, inst.y, inst.totalZElevation];
+    }
+
+    addEvent3DAutoUpdate(
+      name,
+      tag,
+      inst,
+      imagePoint,
+      forwardMode,
+      autoVelocity
+    ) {
       if (!this.curInst) return;
       const key = `${name}/${tag}`;
       if (this.tickCallbacks.has(key)) {
@@ -170,7 +183,7 @@ export default function (parentClass) {
         let vz = 0;
         if (autoVelocity) {
           const oldPosition = this.oldPositionKeeper.get(inst);
-          const [x, y, z] = [inst.x, inst.y, inst.totalZElevation];
+          const [x, y, z] = this.getPositionFromObject(inst, imagePoint);
           if (oldPosition) {
             vx = (x - oldPosition[0]) / dt;
             vy = (y - oldPosition[1]) / dt;
@@ -182,12 +195,19 @@ export default function (parentClass) {
           name,
           tag,
           inst,
+          imagePoint,
           forwardMode,
           vx,
           vy,
           vz
         );
       });
+      this.curInst
+        .SendMessageAsync("wait-for-event-stop", [name, tag])
+        .then(() => {
+          this.tickCallbacks.delete(key);
+          this.oldPositionKeeper.delete(inst);
+        });
     }
 
     removeAllEvent3DAutoUpdate(name) {
