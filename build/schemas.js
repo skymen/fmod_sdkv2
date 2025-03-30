@@ -4,7 +4,7 @@ import Joi from "joi";
 const paramSchema = Joi.object({
   id: Joi.string().required(),
   name: Joi.string().required(),
-  desc: Joi.string().required().allow(""),
+  desc: Joi.string().required(),
   type: Joi.string()
     .required()
     .valid(
@@ -48,6 +48,16 @@ const paramSchema = Joi.object({
         initialValue: Joi.string().required().allow(""),
       }),
     }
+  )
+  .when(
+    Joi.object({
+      type: Joi.string().valid("string"),
+    }).unknown(),
+    {
+      then: Joi.object({
+        autocompleteId: Joi.string().optional(),
+      }),
+    }
   );
 
 // Define the common schema
@@ -82,7 +92,7 @@ const conditionSchema = Joi.object({
 const expressionParamSchema = Joi.object({
   id: Joi.string().required(),
   name: Joi.string().required(),
-  desc: Joi.string().required().allow(""),
+  desc: Joi.string().required(),
   type: Joi.string().required().valid("number", "string", "any"),
 });
 
@@ -118,7 +128,7 @@ const propertySchema = Joi.object({
 
   id: Joi.string().required(),
   name: Joi.string().required(),
-  desc: Joi.string().required().allow(""),
+  desc: Joi.string().required(),
 
   options: Joi.object({
     initialValue: Joi.when("...type", {
@@ -249,14 +259,11 @@ const configSchema = Joi.object({
               "external-css"
             )
             .required(),
-        }).when(
-          Joi.object({ type: Joi.string().valid("copy-to-output") }).unknown(),
-          {
-            then: Joi.object({
-              fileType: Joi.string().required(),
-            }),
-          }
-        )
+        }).when(Joi.object({ type: Joi.string().valid("copy-to-output") }), {
+          then: Joi.object({
+            fileType: Joi.string().required(),
+          }),
+        })
       )
       .required(),
   }).required(),
@@ -289,7 +296,7 @@ const configSchema = Joi.object({
     }).required(),
   })
     .required()
-    .when(Joi.object({ type: Joi.string().valid("world") }).unknown(), {
+    .when(Joi.object({ type: Joi.string().valid("world") }), {
       then: Joi.object({
         defaultImageUrl: Joi.string().optional(),
       }),

@@ -8,7 +8,8 @@ export const config = {
     {
       id: "name",
       name: "Name",
-      desc: "",
+      desc: "The name of the event",
+      autocompleteId: "eventName",
       type: "string",
       initialValue: "",
     },
@@ -19,5 +20,6 @@ export const expose = true;
 
 export default async function (name) {
   if (!this.curInst) return;
+  this.removeAllEvent3DAutoUpdate(name);
   await this.curInst.SendMessageAsync("release-all-event-instances", [name]);
 }

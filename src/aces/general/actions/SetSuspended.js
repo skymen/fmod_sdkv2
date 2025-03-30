@@ -8,7 +8,7 @@ export const config = {
     {
       id: "suspended",
       name: "Suspended",
-      desc: "",
+      desc: "Wether to suspend FMOD",
       type: "boolean",
       initialValue: "true",
     },

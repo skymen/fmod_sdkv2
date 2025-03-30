@@ -10,28 +10,30 @@ export const config = {
     {
       id: "name",
       name: "Name",
-      desc: "",
+      desc: "The name of the event",
+      autocompleteId: "eventName",
       type: "string",
       initialValue: "",
     },
     {
       id: "tag",
       name: "Tag",
-      desc: "",
+      desc: "The tag of the event instance",
+      autocompleteId: "eventTag",
       type: "string",
       initialValue: "",
     },
     {
       id: "object",
       name: "Object",
-      desc: "",
+      desc: "The object to get position and orientation from",
       type: "object",
       allowedPluginIds: ["<world>"],
     },
     {
       id: "forwardMode",
       name: "Forward Mode",
-      desc: "",
+      desc: "The mode to determine the forward vector (2D or 3D)",
       type: "combo",
       initialValue: "camera",
       items: [{ camera: "2D" }, { angle: "3D" }],
@@ -39,21 +41,21 @@ export const config = {
     {
       id: "velocity-x",
       name: "Velocity X",
-      desc: "",
+      desc: "X component of the event's velocity vector",
       type: "number",
       initialValue: "0",
     },
     {
       id: "velocity-y",
       name: "Velocity Y",
-      desc: "",
+      desc: "Y component of the event's velocity vector",
       type: "number",
       initialValue: "0",
     },
     {
       id: "velocity-z",
       name: "Velocity Z",
-      desc: "",
+      desc: "Z component of the event's velocity vector",
       type: "number",
       initialValue: "0",
     },
@@ -73,30 +75,13 @@ export default async function (
 ) {
   if (!this.curInst) return;
   const inst = objectClass.getFirstPickedInstance();
-  const [x, y, z] = [inst.x, inst.y, inst.totalZElevation];
-  const angle = inst.angle;
-  let fx = 0;
-  let fy = 0;
-  let fz = 1;
-  let ux = 0;
-  let uy = -1;
-  let uz = 0;
-  if (forwardMode === 1)
-    [fx, fy, fz, ux, uy, uz] = [Math.cos(angle), Math.sin(angle), 0, 0, 0, 1];
-  await this.SetEvent3DAttributes(
+  await this._SetEvent3DAttributesFromObject(
     name,
     tag,
-    x,
-    y,
-    z,
+    inst,
+    forwardMode,
     vx,
     vy,
-    vz,
-    fx,
-    fy,
-    fz,
-    ux,
-    uy,
-    uz
+    vz
   );
 }

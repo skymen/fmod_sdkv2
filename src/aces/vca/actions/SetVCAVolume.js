@@ -8,14 +8,15 @@ export const config = {
     {
       id: "name",
       name: "Name",
-      desc: "",
+      desc: "The name of the VCA",
+      autocompleteId: "vcaName",
       type: "string",
       initialValue: "",
     },
     {
       id: "volume",
       name: "Volume",
-      desc: "",
+      desc: "The volume level to set (typically 0-1, where 1 is normal volume)",
       type: "number",
       initialValue: "0",
     },

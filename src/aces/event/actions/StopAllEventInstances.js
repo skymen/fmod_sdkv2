@@ -10,13 +10,14 @@ export const config = {
       id: "name",
       name: "Name",
       desc: "The name of the event",
+      autocompleteId: "eventName",
       type: "string",
       initialValue: "",
     },
     {
       id: "allowFadeOut",
       name: "Allow fade out",
-      desc: "",
+      desc: "Allow fade out for the events",
       type: "boolean",
       initialValue: "true",
     },
@@ -34,6 +35,7 @@ export const expose = true;
 
 export default async function (name, allowFadeOut, release) {
   if (!this.curInst) return;
+  this.removeAllEvent3DAutoUpdate(name);
   await this.curInst.SendMessageAsync("stop-all-events", [
     name,
     allowFadeOut,

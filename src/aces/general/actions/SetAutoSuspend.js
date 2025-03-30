@@ -7,7 +7,7 @@ export const config = {
     {
       id: "autoSuspend",
       name: "Auto suspend",
-      desc: "",
+      desc: "Wether to auto suspend FMOD",
       type: "boolean",
       initialValue: "true",
     },

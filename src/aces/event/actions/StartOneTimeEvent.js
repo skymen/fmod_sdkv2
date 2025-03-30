@@ -10,6 +10,7 @@ export const config = {
       id: "name",
       name: "Name",
       desc: "The name of the event",
+      autocompleteId: "eventName",
       type: "string",
       initialValue: "",
     },

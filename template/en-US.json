@@ -71,11 +71,26 @@
             "params": {
               "name": {
                 "name": "Name",
-                "desc": ""
+                "desc": "The name of the bus"
               },
               "muted": {
                 "name": "Muted",
-                "desc": ""
+                "desc": "The muted state of the bus"
+              }
+            }
+          },
+          "SetBusPaused": {
+            "list-name": "Set Bus Paused",
+            "display-text": "Set bus [i]{0}[/i] paused: [i]{1}[/i]",
+            "description": "Set the paused state of the specified FMOD bus.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": "The name of the bus"
+              },
+              "paused": {
+                "name": "Paused",
+                "desc": "The paused state of the bus"
               }
             }
           },
@@ -86,11 +101,26 @@
             "params": {
               "name": {
                 "name": "Name",
-                "desc": ""
+                "desc": "The name of the bus"
               },
               "volume": {
                 "name": "Volume",
-                "desc": ""
+                "desc": "The volume of the bus"
+              }
+            }
+          },
+          "StopAllBusEvents": {
+            "list-name": "Stop All Bus Events",
+            "display-text": "Stop all events from bus [i]{0}[/i] with fade out: [i]{1}[/i]",
+            "description": "Stop all events of the specified FMOD bus.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": "The name of the bus"
+              },
+              "allowFadeOut": {
+                "name": "Allow Fade Out",
+                "desc": "Allow fade out for the events"
               }
             }
           },
@@ -116,7 +146,7 @@
             "params": {
               "name": {
                 "name": "Name",
-                "desc": ""
+                "desc": "The name of the event"
               }
             }
           },
@@ -131,7 +161,7 @@
               },
               "tag": {
                 "name": "Tag",
-                "desc": "A given tag to target"
+                "desc": "The tag of the event instance"
               }
             }
           },
@@ -142,15 +172,34 @@
             "params": {
               "name": {
                 "name": "Name",
-                "desc": ""
+                "desc": "The name of the event"
               },
               "tag": {
                 "name": "Tag",
-                "desc": ""
+                "desc": "The tag of the event instance"
               },
               "paused": {
                 "name": "Paused",
-                "desc": ""
+                "desc": "The paused state of the event instance"
+              }
+            }
+          },
+          "SetEventTimelinePosition": {
+            "list-name": "Set Event Timeline position",
+            "display-text": "Set event [i]{0}[/i] with tag [i]{1}[/i] timeline position to: [i]{2}[/i]",
+            "description": "Set the paused state of the specified FMOD event.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": "The name of the event"
+              },
+              "tag": {
+                "name": "Tag",
+                "desc": "The tag of the event instance"
+              },
+              "timelinePosition": {
+                "name": "Timeline Position",
+                "desc": "The timeline position of the event instance"
               }
             }
           },
@@ -165,7 +214,7 @@
               },
               "tag": {
                 "name": "Tag",
-                "desc": "A given tag to target"
+                "desc": "The tag of the event instance"
               },
               "destroyWhenStopped": {
                 "name": "Release",
@@ -175,7 +224,7 @@
           },
           "StartEventAtObject": {
             "list-name": "Start Event At Object",
-            "display-text": "Start event [i]{0}[/i] with tag [i]{2}[/i] at object [i]{1}[/i] (destroy: {3}, forward mode: {4})",
+            "display-text": "Start event [i]{0}[/i] with tag [i]{2}[/i] at object [i]{1}[/i] (destroy: {3}, forward mode: {4}, autoUpdate: [i]{5}[/i], autoVelocity: [i]{6}[/i])",
             "description": "Start the specified FMOD event at the specified object.",
             "params": {
               "name": {
@@ -188,7 +237,7 @@
               },
               "tag": {
                 "name": "Tag",
-                "desc": "A given tag to target"
+                "desc": "The tag of the event instance"
               },
               "destroyWhenStopped": {
                 "name": "Release",
@@ -201,6 +250,14 @@
                   "camera": "2D",
                   "angle": "3D"
                 }
+              },
+              "autoUpdate": {
+                "name": "Auto Update",
+                "desc": "Automatically update the event's position and orientation with the object"
+              },
+              "autoVelocity": {
+                "name": "Auto Velocity",
+                "desc": "Automatically update the event's velocity with the object"
               }
             }
           },
@@ -226,7 +283,7 @@
               },
               "allowFadeOut": {
                 "name": "Allow fade out",
-                "desc": ""
+                "desc": "Allow fade out for the events"
               },
               "release": {
                 "name": "Release",
@@ -245,11 +302,11 @@
               },
               "tag": {
                 "name": "Tag",
-                "desc": "A given tag to target"
+                "desc": "The tag of the event instance"
               },
               "allowFadeOut": {
                 "name": "Allow fade out",
-                "desc": ""
+                "desc": "Allow fade out for the events"
               },
               "release": {
                 "name": "Release",
@@ -264,7 +321,7 @@
             "params": {
               "autoSuspend": {
                 "name": "Auto suspend",
-                "desc": ""
+                "desc": "Wether to auto suspend FMOD"
               }
             }
           },
@@ -275,7 +332,7 @@
             "params": {
               "suspended": {
                 "name": "Suspended",
-                "desc": ""
+                "desc": "Wether to suspend FMOD"
               }
             }
           },
@@ -290,67 +347,67 @@
               },
               "x": {
                 "name": "X",
-                "desc": ""
+                "desc": "X position of the listener"
               },
               "y": {
                 "name": "Y",
-                "desc": ""
+                "desc": "Y position of the listener"
               },
               "z": {
                 "name": "Z",
-                "desc": ""
+                "desc": "Z position of the listener"
               },
               "velocity-x": {
                 "name": "Velocity X",
-                "desc": ""
+                "desc": "Velocity X of the listener"
               },
               "velocity-y": {
                 "name": "Velocity Y",
-                "desc": ""
+                "desc": "Velocity Y of the listener"
               },
               "velocity-z": {
                 "name": "Velocity Z",
-                "desc": ""
+                "desc": "Velocity Z of the listener"
               },
               "forward-x": {
                 "name": "Forward X",
-                "desc": ""
+                "desc": "Forward X of the listener"
               },
               "forward-y": {
                 "name": "Forward Y",
-                "desc": ""
+                "desc": "Forward Y of the listener"
               },
               "forward-z": {
                 "name": "Forward Z",
-                "desc": ""
+                "desc": "Forward Z of the listener"
               },
               "up-x": {
                 "name": "Up X",
-                "desc": ""
+                "desc": "Up X of the listener"
               },
               "up-y": {
                 "name": "Up Y",
-                "desc": ""
+                "desc": "Up Y of the listener"
               },
               "up-z": {
                 "name": "Up Z",
-                "desc": ""
+                "desc": "Up Z of the listener"
               },
               "hasSeparateAttenuationPosition": {
                 "name": "Has separate attenuation position",
-                "desc": ""
+                "desc": "Whether to use separate attenuation position"
               },
               "attenuation-x": {
                 "name": "Attenuation X",
-                "desc": ""
+                "desc": "Attenuation X of the listener"
               },
               "attenuation-y": {
                 "name": "Attenuation Y",
-                "desc": ""
+                "desc": "Attenuation Y of the listener"
               },
               "attenuation-z": {
                 "name": "Attenuation Z",
-                "desc": ""
+                "desc": "Attenuation Z of the listener"
               }
             }
           },
@@ -365,35 +422,35 @@
               },
               "camera": {
                 "name": "Camera",
-                "desc": ""
+                "desc": "The Camera3D object to get position and orientation from"
               },
               "velocity-x": {
                 "name": "Velocity X",
-                "desc": ""
+                "desc": "X component of the listener's velocity vector"
               },
               "velocity-y": {
                 "name": "Velocity Y",
-                "desc": ""
+                "desc": "Y component of the listener's velocity vector"
               },
               "velocity-z": {
                 "name": "Velocity Z",
-                "desc": ""
+                "desc": "Z component of the listener's velocity vector"
               },
               "hasSeparateAttenuationPosition": {
                 "name": "Has separate attenuation position",
-                "desc": ""
+                "desc": "Whether to use a separate position for distance attenuation"
               },
               "attenuation-x": {
                 "name": "Attenuation X",
-                "desc": ""
+                "desc": "X component of the attenuation position"
               },
               "attenuation-y": {
                 "name": "Attenuation Y",
-                "desc": ""
+                "desc": "Y component of the attenuation position"
               },
               "attenuation-z": {
                 "name": "Attenuation Z",
-                "desc": ""
+                "desc": "Z component of the attenuation position"
               }
             }
           },
@@ -408,23 +465,23 @@
               },
               "velocity-x": {
                 "name": "Velocity X",
-                "desc": ""
+                "desc": "X component of the listener's velocity vector"
               },
               "velocity-y": {
                 "name": "Velocity Y",
-                "desc": ""
+                "desc": "Y component of the listener's velocity vector"
               },
               "hasSeparateAttenuationPosition": {
                 "name": "Has separate attenuation position",
-                "desc": ""
+                "desc": "Whether to use a separate position for distance attenuation"
               },
               "attenuation-x": {
                 "name": "Attenuation X",
-                "desc": ""
+                "desc": "X component of the attenuation position"
               },
               "attenuation-y": {
                 "name": "Attenuation Y",
-                "desc": ""
+                "desc": "Y component of the attenuation position"
               }
             }
           },
@@ -439,15 +496,15 @@
               },
               "x": {
                 "name": "X",
-                "desc": ""
+                "desc": "X position of the listener"
               },
               "y": {
                 "name": "Y",
-                "desc": ""
+                "desc": "Y position of the listener"
               },
               "z": {
                 "name": "Z",
-                "desc": ""
+                "desc": "Z position of the listener"
               }
             }
           },
@@ -499,7 +556,7 @@
               },
               "tag": {
                 "name": "Tag",
-                "desc": "A given tag to target"
+                "desc": "The tag of the event instance"
               },
               "parameter": {
                 "name": "Parameter",
@@ -507,11 +564,11 @@
               },
               "value": {
                 "name": "Value",
-                "desc": ""
+                "desc": "The value to set the parameter to"
               },
               "ignoreSeekSpeed": {
                 "name": "Ignore seek speed",
-                "desc": ""
+                "desc": "Whether to ignore the parameter's seek speed and set the value immediately"
               }
             }
           },
@@ -522,11 +579,11 @@
             "params": {
               "name": {
                 "name": "Name",
-                "desc": ""
+                "desc": "The name of the event"
               },
               "tag": {
                 "name": "Tag",
-                "desc": "A given tag to target"
+                "desc": "The tag of the event instance"
               },
               "parameter": {
                 "name": "Parameter",
@@ -534,11 +591,11 @@
               },
               "value": {
                 "name": "Value",
-                "desc": ""
+                "desc": "The label value to set the parameter to"
               },
               "ignoreSeekSpeed": {
                 "name": "Ignore seek speed",
-                "desc": ""
+                "desc": "Whether to ignore the parameter's seek speed and set the value immediately"
               }
             }
           },
@@ -553,11 +610,11 @@
               },
               "value": {
                 "name": "Value",
-                "desc": ""
+                "desc": "The value to set the parameter to"
               },
               "ignoreSeekSpeed": {
                 "name": "Ignore seek speed",
-                "desc": ""
+                "desc": "Whether to ignore the parameter's seek speed and set the value immediately"
               }
             }
           },
@@ -572,11 +629,11 @@
               },
               "value": {
                 "name": "Value",
-                "desc": ""
+                "desc": "The label value to set the parameter to"
               },
               "ignoreSeekSpeed": {
                 "name": "Ignore seek speed",
-                "desc": ""
+                "desc": "Whether to ignore the parameter's seek speed and set the value immediately"
               }
             }
           },
@@ -587,59 +644,59 @@
             "params": {
               "name": {
                 "name": "Name",
-                "desc": ""
+                "desc": "The name of the event"
               },
               "tag": {
                 "name": "Tag",
-                "desc": ""
+                "desc": "The tag of the event instance"
               },
               "x": {
                 "name": "X",
-                "desc": ""
+                "desc": "X position of the event"
               },
               "y": {
                 "name": "Y",
-                "desc": ""
+                "desc": "Y position of the event"
               },
               "z": {
                 "name": "Z",
-                "desc": ""
+                "desc": "Z position of the event"
               },
               "velocity-x": {
                 "name": "Velocity X",
-                "desc": ""
+                "desc": "X component of the event's velocity vector"
               },
               "velocity-y": {
                 "name": "Velocity Y",
-                "desc": ""
+                "desc": "Y component of the event's velocity vector"
               },
               "velocity-z": {
                 "name": "Velocity Z",
-                "desc": ""
+                "desc": "Z component of the event's velocity vector"
               },
               "forward-x": {
                 "name": "Forward X",
-                "desc": ""
+                "desc": "X component of the event's forward vector"
               },
               "forward-y": {
                 "name": "Forward Y",
-                "desc": ""
+                "desc": "Y component of the event's forward vector"
               },
               "forward-z": {
                 "name": "Forward Z",
-                "desc": ""
+                "desc": "Z component of the event's forward vector"
               },
               "up-x": {
                 "name": "Up X",
-                "desc": ""
+                "desc": "X component of the event's up vector"
               },
               "up-y": {
                 "name": "Up Y",
-                "desc": ""
+                "desc": "Y component of the event's up vector"
               },
               "up-z": {
                 "name": "Up Z",
-                "desc": ""
+                "desc": "Z component of the event's up vector"
               }
             }
           },
@@ -650,19 +707,19 @@
             "params": {
               "name": {
                 "name": "Name",
-                "desc": ""
+                "desc": "The name of the event"
               },
               "tag": {
                 "name": "Tag",
-                "desc": ""
+                "desc": "The tag of the event instance"
               },
               "object": {
                 "name": "Object",
-                "desc": ""
+                "desc": "The object to get position and orientation from"
               },
               "forwardMode": {
                 "name": "Forward Mode",
-                "desc": "",
+                "desc": "The mode to determine the forward vector (2D or 3D)",
                 "items": {
                   "camera": "2D",
                   "angle": "3D"
@@ -670,15 +727,15 @@
               },
               "velocity-x": {
                 "name": "Velocity X",
-                "desc": ""
+                "desc": "X component of the event's velocity vector"
               },
               "velocity-y": {
                 "name": "Velocity Y",
-                "desc": ""
+                "desc": "Y component of the event's velocity vector"
               },
               "velocity-z": {
                 "name": "Velocity Z",
-                "desc": ""
+                "desc": "Z component of the event's velocity vector"
               }
             }
           },
@@ -689,50 +746,58 @@
             "params": {
               "name": {
                 "name": "Name",
-                "desc": ""
+                "desc": "The name of the event"
               },
               "tag": {
                 "name": "Tag",
-                "desc": ""
+                "desc": "The tag of the event instance"
               },
               "x": {
                 "name": "X",
-                "desc": ""
+                "desc": "X position of the event"
               },
               "y": {
                 "name": "Y",
-                "desc": ""
+                "desc": "Y position of the event"
               },
               "z": {
                 "name": "Z",
-                "desc": ""
+                "desc": "Z position of the event"
               }
             }
           },
           "SetEventSimpleAttributesFromObject": {
             "list-name": "Set Event Simple Attributes From Object",
-            "display-text": "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes from object [i]{2}[/i] (forward mode: [i]{3}[/i])",
+            "display-text": "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes from object [i]{2}[/i] (forward mode: [i]{3}[/i], autoUpdate: [i]{4}[/i], autoVelocity: [i]{5}[/i])",
             "description": "Set the 3D attributes of the specified FMOD event from the specified object.",
             "params": {
               "name": {
                 "name": "Name",
-                "desc": ""
+                "desc": "The name of the event"
               },
               "tag": {
                 "name": "Tag",
-                "desc": ""
+                "desc": "The tag of the event instance"
               },
               "object": {
                 "name": "Object",
-                "desc": ""
+                "desc": "The object to get position and orientation from"
               },
               "forwardMode": {
                 "name": "Forward Mode",
-                "desc": "",
+                "desc": "The mode to determine the forward vector (Camera or Angle)",
                 "items": {
                   "camera": "Camera",
                   "angle": "Angle"
                 }
+              },
+              "autoUpdate": {
+                "name": "Auto Update",
+                "desc": "Automatically update the event's position and orientation with the object"
+              },
+              "autoVelocity": {
+                "name": "Auto Velocity",
+                "desc": "Automatically update the event's velocity with the object"
               }
             }
           },
@@ -743,11 +808,11 @@
             "params": {
               "name": {
                 "name": "Name",
-                "desc": ""
+                "desc": "The name of the VCA"
               },
               "volume": {
                 "name": "Volume",
-                "desc": ""
+                "desc": "The volume level to set (typically 0-1, where 1 is normal volume)"
               }
             }
           }

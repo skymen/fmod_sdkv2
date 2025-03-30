@@ -6,6 +6,7 @@ export const config = {
       id: "name",
       name: "Name",
       desc: "The name of the event",
+      autocompleteId: "eventName",
       type: "string",
       initialValue: "",
     },
@@ -19,7 +20,8 @@ export const config = {
     {
       id: "tag",
       name: "Tag",
-      desc: "A given tag to target",
+      desc: "The tag of the event instance",
+      autocompleteId: "eventTag",
       type: "string",
       initialValue: "",
     },
@@ -38,10 +40,24 @@ export const config = {
       initialValue: "camera",
       items: [{ camera: "2D" }, { angle: "3D" }],
     },
+    {
+      id: "autoUpdate",
+      name: "Auto Update",
+      desc: "Automatically update the event's position and orientation with the object",
+      type: "boolean",
+      initialValue: "true",
+    },
+    {
+      id: "autoVelocity",
+      name: "Auto Velocity",
+      desc: "Automatically update the event's velocity with the object",
+      type: "boolean",
+      initialValue: "false",
+    },
   ],
   listName: "Start Event At Object",
   displayText:
-    "Start event [i]{0}[/i] with tag [i]{2}[/i] at object [i]{1}[/i] (destroy: {3}, forward mode: {4})",
+    "Start event [i]{0}[/i] with tag [i]{2}[/i] at object [i]{1}[/i] (destroy: {3}, forward mode: {4}, autoUpdate: [i]{5}[/i], autoVelocity: [i]{6}[/i])",
   description: "Start the specified FMOD event at the specified object.",
 };
 
@@ -52,14 +68,31 @@ export default async function (
   tag,
   objectClass,
   destroyWhenStopped,
-  forwardMode
+  forwardMode,
+  autoUpdate,
+  autoVelocity
 ) {
+  if (!this.curInst) return;
   // reusing actions that are already implemented
+  const inst = objectClass.getFirstPickedInstance();
   await this.StartEvent(name, tag, destroyWhenStopped);
-  await this.SetEvent3DAttributesFromObject(
+  await this._SetEvent3DAttributesFromObject(
     name,
     tag,
-    objectClass,
-    forwardMode
+    inst,
+    forwardMode,
+    0, //vx,
+    0, //vy,
+    0 //vz
   );
+
+  if (autoUpdate) {
+    this.addEvent3DAutoUpdate(
+      name,
+      tag,
+      objectClass,
+      forwardMode,
+      autoVelocity
+    );
+  }
 }

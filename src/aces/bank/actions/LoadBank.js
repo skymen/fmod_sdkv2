@@ -11,6 +11,7 @@ export const config = {
       desc: "The name of the bank",
       type: "string",
       initialValue: "",
+      autocompleteId: "bankName",
     },
   ],
 };

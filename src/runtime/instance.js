@@ -7,6 +7,8 @@ export default function (parentClass) {
       const properties = this._getInitProperties();
       this.allBanks = [];
       this.autoSuspend = true;
+      this.tickCallbacks = new Map();
+      this.oldPositionKeeper = new WeakMap();
 
       if (properties) {
         const allBanks = properties[0].split("\n");
@@ -102,6 +104,108 @@ export default function (parentClass) {
     _tick() {
       if (!this.curInst) return;
       this.curInst.SendMessage("update");
+      const dt = this.runtime.dt;
+      // go through the values of the tickCallbacks map
+      this.tickCallbacks.forEach((callback, key) => {
+        if (callback) {
+          callback(dt);
+        }
+      });
+    }
+
+    async _SetEvent3DAttributesFromObject(
+      name,
+      tag,
+      inst,
+      forwardMode,
+      vx,
+      vy,
+      vz
+    ) {
+      if (!this.curInst) return;
+      const [x, y, z] = [inst.x, inst.y, inst.totalZElevation];
+      const angle = inst.angle;
+      let fx = 0;
+      let fy = 0;
+      let fz = 1;
+      let ux = 0;
+      let uy = -1;
+      let uz = 0;
+      if (forwardMode === 1)
+        [fx, fy, fz, ux, uy, uz] = [
+          Math.cos(angle),
+          Math.sin(angle),
+          0,
+          0,
+          0,
+          1,
+        ];
+      await this.SetEvent3DAttributes(
+        name,
+        tag,
+        x,
+        y,
+        z,
+        vx,
+        vy,
+        vz,
+        fx,
+        fy,
+        fz,
+        ux,
+        uy,
+        uz
+      );
+    }
+
+    addEvent3DAutoUpdate(name, tag, inst, forwardMode, autoVelocity) {
+      if (!this.curInst) return;
+      const key = `${name}/${tag}`;
+      if (this.tickCallbacks.has(key)) {
+        this.tickCallbacks.delete(key);
+      }
+      this.tickCallbacks.set(key, (dt) => {
+        let vx = 0;
+        let vy = 0;
+        let vz = 0;
+        if (autoVelocity) {
+          const oldPosition = this.oldPositionKeeper.get(inst);
+          const [x, y, z] = [inst.x, inst.y, inst.totalZElevation];
+          if (oldPosition) {
+            vx = (x - oldPosition[0]) / dt;
+            vy = (y - oldPosition[1]) / dt;
+            vz = (z - oldPosition[2]) / dt;
+          }
+          this.oldPositionKeeper.set(inst, [x, y, z]);
+        }
+        this._SetEvent3DAttributesFromObject(
+          name,
+          tag,
+          inst,
+          forwardMode,
+          vx,
+          vy,
+          vz
+        );
+      });
+    }
+
+    removeAllEvent3DAutoUpdate(name) {
+      if (!this.curInst) return;
+      const key = `${name}/`;
+      this.tickCallbacks.forEach((callback, k) => {
+        if (k.startsWith(key)) {
+          this.tickCallbacks.delete(k);
+        }
+      });
+    }
+
+    removeEvent3DAutoUpdate(name, tag) {
+      if (!this.curInst) return;
+      const key = `${name}/${tag}`;
+      if (this.tickCallbacks.has(key)) {
+        this.tickCallbacks.delete(key);
+      }
     }
 
     _onSuspend(suspended) {

@@ -8,14 +8,15 @@ export const config = {
     {
       id: "name",
       name: "Name",
-      desc: "",
+      desc: "The name of the bus",
+      autocompleteId: "busName",
       type: "string",
       initialValue: "",
     },
     {
       id: "volume",
       name: "Volume",
-      desc: "",
+      desc: "The volume of the bus",
       type: "number",
       initialValue: "0",
     },

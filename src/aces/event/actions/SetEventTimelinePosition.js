@@ -1,8 +1,9 @@
 export const config = {
   highlight: false,
   isAsync: true,
-  listName: "Set Event Paused",
-  displayText: "Set event [i]{0}[/i] with tag [i]{1}[/i] paused: [i]{2}[/i]",
+  listName: "Set Event Timeline position",
+  displayText:
+    "Set event [i]{0}[/i] with tag [i]{1}[/i] timeline position to: [i]{2}[/i]",
   description: "Set the paused state of the specified FMOD event.",
   params: [
     {
@@ -22,18 +23,22 @@ export const config = {
       initialValue: "",
     },
     {
-      id: "paused",
-      name: "Paused",
-      desc: "The paused state of the event instance",
-      type: "boolean",
-      initialValue: "true",
+      id: "timelinePosition",
+      name: "Timeline Position",
+      desc: "The timeline position of the event instance",
+      type: "number",
+      initialValue: "",
     },
   ],
 };
 
 export const expose = true;
 
-export default async function (name, tag, paused) {
+export default async function (name, tag, position) {
   if (!this.curInst) return;
-  await this.curInst.SendMessageAsync("set-event-paused", [name, tag, paused]);
+  await this.curInst.SendMessageAsync("set-event-timeline-position", [
+    name,
+    tag,
+    position,
+  ]);
 }
