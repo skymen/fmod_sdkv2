@@ -79,10 +79,10 @@ export default function (parentClass) {
       );
 
       this.runtime.addEventListener("suspend", () => {
-        this.OnSuspend(true);
+        this._onSuspend(true);
       });
       this.runtime.addEventListener("resume", () => {
-        this.OnSuspend(false);
+        this._onSuspend(false);
       });
       this._setTicking(true);
     }

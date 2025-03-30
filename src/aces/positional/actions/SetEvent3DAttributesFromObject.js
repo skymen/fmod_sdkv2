@@ -40,10 +40,10 @@ export const config = {
     {
       id: "forwardMode",
       name: "Forward Mode",
-      desc: "The mode to determine the forward vector (2D or 3D)",
+      desc: "The mode to determine the forward vector (Camera or Angle)",
       type: "combo",
       initialValue: "camera",
-      items: [{ camera: "2D" }, { angle: "3D" }],
+      items: [{ camera: "Camera" }, { angle: "Angle" }],
     },
     {
       id: "velocity-x",

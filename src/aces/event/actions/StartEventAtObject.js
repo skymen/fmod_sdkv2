@@ -11,6 +11,14 @@ export const config = {
       initialValue: "",
     },
     {
+      id: "tag",
+      name: "Tag",
+      desc: "The tag of the event instance",
+      autocompleteId: "eventTag",
+      type: "string",
+      initialValue: "",
+    },
+    {
       id: "object",
       name: "Object",
       desc: "The object to start the event at",
@@ -25,14 +33,6 @@ export const config = {
       initialValue: "0",
     },
     {
-      id: "tag",
-      name: "Tag",
-      desc: "The tag of the event instance",
-      autocompleteId: "eventTag",
-      type: "string",
-      initialValue: "",
-    },
-    {
       id: "destroyWhenStopped",
       name: "Release",
       desc: "Releasing this event will free its memory when it stops playing and will remove it from the tag on the next tick",
@@ -42,10 +42,10 @@ export const config = {
     {
       id: "forwardMode",
       name: "Forward Mode",
-      desc: "The forward mode",
+      desc: "The mode to determine the forward vector (Camera or Angle)",
       type: "combo",
       initialValue: "camera",
-      items: [{ camera: "2D" }, { angle: "3D" }],
+      items: [{ camera: "Camera" }, { angle: "Angle" }],
     },
     {
       id: "autoUpdate",

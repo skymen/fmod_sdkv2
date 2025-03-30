@@ -231,6 +231,10 @@
                 "name": "Name",
                 "desc": "The name of the event"
               },
+              "tag": {
+                "name": "Tag",
+                "desc": "The tag of the event instance"
+              },
               "object": {
                 "name": "Object",
                 "desc": "The object to start the event at"
@@ -239,20 +243,16 @@
                 "name": "Image Point",
                 "desc": "The image point to start the event at"
               },
-              "tag": {
-                "name": "Tag",
-                "desc": "The tag of the event instance"
-              },
               "destroyWhenStopped": {
                 "name": "Release",
                 "desc": "Releasing this event will free its memory when it stops playing and will remove it from the tag on the next tick"
               },
               "forwardMode": {
                 "name": "Forward Mode",
-                "desc": "The forward mode",
+                "desc": "The mode to determine the forward vector (Camera or Angle)",
                 "items": {
-                  "camera": "2D",
-                  "angle": "3D"
+                  "camera": "Camera",
+                  "angle": "Angle"
                 }
               },
               "autoUpdate": {
@@ -727,10 +727,10 @@
               },
               "forwardMode": {
                 "name": "Forward Mode",
-                "desc": "The mode to determine the forward vector (2D or 3D)",
+                "desc": "The mode to determine the forward vector (Camera or Angle)",
                 "items": {
-                  "camera": "2D",
-                  "angle": "3D"
+                  "camera": "Camera",
+                  "angle": "Angle"
                 }
               },
               "velocity-x": {
