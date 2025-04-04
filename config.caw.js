@@ -146,4 +146,23 @@ export const properties = [
     name: "Auto Suspend",
     desc: "Automatically suspend FMOD when the game is suspended. Disable this if you want to control the suspend state manually.",
   },
+  {
+    type: "longtext",
+    id: "advancedSettings",
+    options: {
+      initialValue: JSON.stringify(
+        {
+          commandqueuesize: 10,
+          handleinitialsize: 0,
+          studioupdateperiod: 20,
+          idlesampledatapoolsize: 0,
+          streamingscheduledelay: 0,
+        },
+        null,
+        2
+      ),
+    },
+    name: "Advanced Settings",
+    desc: "Advanced settings for FMOD. See the FMOD documentation for more information.",
+  },
 ];

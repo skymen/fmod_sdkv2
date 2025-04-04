@@ -33,6 +33,10 @@
           "autoSuspend": {
             "name": "Auto Suspend",
             "desc": "Automatically suspend FMOD when the game is suspended. Disable this if you want to control the suspend state manually."
+          },
+          "advancedSettings": {
+            "name": "Advanced Settings",
+            "desc": "Advanced settings for FMOD. See the FMOD documentation for more information."
           }
         },
         "actions": {

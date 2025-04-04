@@ -1,9 +1,9 @@
 <img src="./examples/cover.webp" width="150" /><br>
 # (FMOD)
 <i>FMOD Studio integration for Construct 3</i> <br>
-### Version 2.1.1.1
+### Version 2.1.2.0
 
-[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-2.1.1.1.c3addon/skymen_fmod-2.1.1.1.c3addon)
+[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-2.1.2.0.c3addon/skymen_fmod-2.1.2.0.c3addon)
 <br>
 <sub> [See all releases](https://github.com/skymen/fmod_sdkv2/releases) </sub> <br>
 
@@ -49,6 +49,7 @@ npm run dev
 | Preload Banks | The banks that will be preloaded. One bank path per line. | longtext |
 | Load Banks (Non Blocking) | The banks that will be loaded as soon as possible but will not prevent the game from starting. One bank path per line. | longtext |
 | Auto Suspend | Automatically suspend FMOD when the game is suspended. Disable this if you want to control the suspend state manually. | check |
+| Advanced Settings | Advanced settings for FMOD. See the FMOD documentation for more information. | longtext |
 
 
 ---

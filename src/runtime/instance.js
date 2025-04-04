@@ -9,12 +9,16 @@ export default function (parentClass) {
       this.autoSuspend = true;
       this.tickCallbacks = new Map();
       this.oldPositionKeeper = new WeakMap();
+      this.advancedSettings = {};
 
       if (properties) {
         const allBanks = properties[0].split("\n");
         const preloadBanks = properties[1].split("\n");
         const preloadBanksNonBlocking = properties[2].split("\n");
         this.autoSuspend = properties[3];
+        try {
+          this.advancedSettings = JSON.parse(properties[4]);
+        } catch (e) {}
         (async () => {
           for (let i = 0; i < allBanks.length; i++) {
             const bank = allBanks[i];
@@ -268,7 +272,9 @@ export default function (parentClass) {
           ]);
         })
       );
-      await this.curInst.SendMessageAsync("pre-init");
+      await this.curInst.SendMessageAsync("pre-init", {
+        advancedSettings: this.advancedSettings,
+      });
     }
 
     _loadFromJson(o) {
