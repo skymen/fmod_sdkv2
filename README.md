@@ -1,9 +1,9 @@
 <img src="./examples/cover.webp" width="150" /><br>
 # (FMOD)
 <i>FMOD Studio integration for Construct 3</i> <br>
-### Version 2.1.2.0
+### Version 2.1.3.0
 
-[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-2.1.2.0.c3addon/skymen_fmod-2.1.2.0.c3addon)
+[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-2.1.3.0.c3addon/skymen_fmod-2.1.3.0.c3addon)
 <br>
 <sub> [See all releases](https://github.com/skymen/fmod_sdkv2/releases) </sub> <br>
 
@@ -71,7 +71,8 @@ npm run dev
 | Start Event | Start the specified FMOD event. | Name             *(string)* <br>Tag             *(string)* <br>Release             *(boolean)* <br> |
 | Start Event At Object | Start the specified FMOD event at the specified object. | Name             *(string)* <br>Tag             *(string)* <br>Object             *(object)* <br>Image Point             *(any)* <br>Release             *(boolean)* <br>Forward Mode             *(combo)* <br>Auto Update             *(boolean)* <br>Auto Velocity             *(boolean)* <br> |
 | Start One Time Event | Start the specified FMOD event as a one-time event. This instance will be released immediately. | Name             *(string)* <br> |
-| Stop All Events | Stop all FMOD events. | Name             *(string)* <br>Allow fade out             *(boolean)* <br>Release             *(boolean)* <br> |
+| Stop All Event Instances | Stop all FMOD event instances from one specific event. | Name             *(string)* <br>Allow fade out             *(boolean)* <br>Release             *(boolean)* <br> |
+| Stop All Events | Stop all FMOD events. | Allow fade out             *(boolean)* <br>Release             *(boolean)* <br> |
 | Stop Event | Stop the specified FMOD event, with an option to allow fade out. | Name             *(string)* <br>Tag             *(string)* <br>Allow fade out             *(boolean)* <br>Release             *(boolean)* <br> |
 | Set Auto Suspend | Set the auto suspend state of FMOD. | Auto suspend             *(boolean)* <br> |
 | Set Suspended | Set the suspended state of FMOD. | Suspended             *(boolean)* <br> |

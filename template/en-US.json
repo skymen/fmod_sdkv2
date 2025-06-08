@@ -281,14 +281,29 @@
             }
           },
           "StopAllEventInstances": {
-            "list-name": "Stop All Events",
-            "display-text": "Stop all events [i]{0}[/i] (allow fade out: [i]{1}[/i], release: [i]{2}[/i])",
-            "description": "Stop all FMOD events.",
+            "list-name": "Stop All Event Instances",
+            "display-text": "Stop all [i]{0}[/i] events (allow fade out: [i]{1}[/i], release: [i]{2}[/i])",
+            "description": "Stop all FMOD event instances from one specific event.",
             "params": {
               "name": {
                 "name": "Name",
                 "desc": "The name of the event"
               },
+              "allowFadeOut": {
+                "name": "Allow fade out",
+                "desc": "Allow fade out for the events"
+              },
+              "release": {
+                "name": "Release",
+                "desc": "Releasing this event will free its memory when it stops playing and will remove it from the tag."
+              }
+            }
+          },
+          "StopAllEvents": {
+            "list-name": "Stop All Events",
+            "display-text": "Stop all events (allow fade out: [i]{0}[/i], release: [i]{1}[/i])",
+            "description": "Stop all FMOD events.",
+            "params": {
               "allowFadeOut": {
                 "name": "Allow fade out",
                 "desc": "Allow fade out for the events"

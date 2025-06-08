@@ -216,7 +216,7 @@ export default function (parentClass) {
 
     removeAllEvent3DAutoUpdate(name) {
       if (!this.curInst) return;
-      const key = `${name}/`;
+      const key = name ? `${name}/` : "";
       this.tickCallbacks.forEach((callback, k) => {
         if (k.startsWith(key)) {
           this.tickCallbacks.delete(k);
