@@ -83,7 +83,7 @@ export default async function (
   if (!this.curInst) return;
   // reusing actions that are already implemented
   const inst = objectClass.getFirstPickedInstance();
-  await this.StartEvent(name, tag, destroyWhenStopped);
+  this.StartEvent(name, tag, destroyWhenStopped);
   await this._SetEvent3DAttributesFromObject(
     name,
     tag,
