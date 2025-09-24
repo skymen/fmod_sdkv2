@@ -25,10 +25,17 @@ export const config = {
     {
       id: "parameter",
       name: "Parameter",
-      desc: "The name of the parameter",
+      desc: "The name or ID of the parameter",
       autocompleteId: "paramName",
       type: "string",
       initialValue: "",
+    },
+    {
+      id: "isid",
+      name: "Use Id",
+      desc: "Whether the parameter is specified by its ID instead of its name",
+      type: "boolean",
+      initialValue: "false",
     },
     {
       id: "value",
@@ -49,7 +56,7 @@ export const config = {
 
 export const expose = true;
 
-export default async function (name, tag, param, value, ignoreSeekSpeed) {
+export default async function (name, tag, param, isId, value, ignoreSeekSpeed) {
   if (!this.curInst) return;
   await this.curInst.SendMessageAsync("set-event-parameter", [
     name,
@@ -57,5 +64,6 @@ export default async function (name, tag, param, value, ignoreSeekSpeed) {
     param,
     value,
     ignoreSeekSpeed,
+    isId,
   ]);
 }
