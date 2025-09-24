@@ -570,7 +570,7 @@
           },
           "SetEventParameter": {
             "list-name": "Set Event Parameter",
-            "display-text": "Set event parameter [i]{2}[/i] on event [i]{0}[/i] with tags [i]{1}[/i] to [i]{3}[/i] (ignore seek speed: [i]{4}[/i])",
+            "display-text": "Set event parameter [i]{2}[/i] on event [i]{0}[/i] with tags [i]{1}[/i] to [i]{4}[/i] (ignore seek speed: [i]{5}[/i], use Id: [i]{3}[/i])",
             "description": "Set a parameter value for the specified FMOD event.",
             "params": {
               "name": {
@@ -583,7 +583,11 @@
               },
               "parameter": {
                 "name": "Parameter",
-                "desc": "The name of the parameter"
+                "desc": "The name or ID of the parameter"
+              },
+              "isid": {
+                "name": "Use Id",
+                "desc": "Whether the parameter is specified by its ID instead of its name"
               },
               "value": {
                 "name": "Value",
@@ -597,7 +601,7 @@
           },
           "SetEventParameterWithLabel": {
             "list-name": "Set Event Parameter With Label",
-            "display-text": "Set event parameter [i]{2}[/i] on event [i]{0}[/i] with tags [i]{1}[/i] to label [i]{3}[/i] (ignore seek speed: [i]{4}[/i])",
+            "display-text": "Set event parameter [i]{2}[/i] on event [i]{0}[/i] with tags [i]{1}[/i] to label [i]{4}[/i] (ignore seek speed: [i]{5}[/i], use Id: [i]{3}[/i])",
             "description": "Set a parameter value for the specified FMOD event, using the parameter label instead of the parameter name.",
             "params": {
               "name": {
@@ -610,7 +614,11 @@
               },
               "parameter": {
                 "name": "Parameter",
-                "desc": "The name of the parameter"
+                "desc": "The name or ID of the parameter"
+              },
+              "isid": {
+                "name": "Use Id",
+                "desc": "Whether the parameter is specified by its ID instead of its name"
               },
               "value": {
                 "name": "Value",
@@ -624,12 +632,16 @@
           },
           "SetGlobalParameter": {
             "list-name": "Set Global Parameter",
-            "display-text": "Set global parameter [i]{0}[/i] to [i]{1}[/i] (ignore seek speed: [i]{2}[/i])",
+            "display-text": "Set global parameter [i]{0}[/i] to [i]{2}[/i] (ignore seek speed: [i]{3}[/i], use Id: [i]{1}[/i])",
             "description": "Set a global parameter value for FMOD.",
             "params": {
               "parameter": {
                 "name": "Parameter",
-                "desc": "The name of the parameter"
+                "desc": "The name or ID of the parameter"
+              },
+              "isid": {
+                "name": "Use Id",
+                "desc": "Whether the parameter is specified by its ID instead of its name"
               },
               "value": {
                 "name": "Value",
@@ -643,12 +655,16 @@
           },
           "SetGlobalParameterWithLabel": {
             "list-name": "Set Global Parameter With Label",
-            "display-text": "Set global parameter [i]{0}[/i] to label [i]{1}[/i] (ignore seek speed: [i]{2}[/i])",
+            "display-text": "Set global parameter [i]{0}[/i] to label [i]{2}[/i] (ignore seek speed: [i]{3}[/i], use Id: [i]{1}[/i])",
             "description": "Set a global parameter value for FMOD, using the parameter label instead of the parameter name.",
             "params": {
               "parameter": {
                 "name": "Parameter",
-                "desc": "The name of the parameter"
+                "desc": "The name or ID of the parameter"
+              },
+              "isid": {
+                "name": "Use Id",
+                "desc": "Whether the parameter is specified by its ID instead of its name"
               },
               "value": {
                 "name": "Value",

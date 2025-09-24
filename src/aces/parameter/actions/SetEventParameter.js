@@ -3,7 +3,7 @@ export const config = {
   isAsync: true,
   listName: "Set Event Parameter",
   displayText:
-    "Set event parameter [i]{2}[/i] on event [i]{0}[/i] with tags [i]{1}[/i] to [i]{3}[/i] (ignore seek speed: [i]{4}[/i])",
+    "Set event parameter [i]{2}[/i] on event [i]{0}[/i] with tags [i]{1}[/i] to [i]{4}[/i] (ignore seek speed: [i]{5}[/i], use Id: [i]{3}[/i])",
   description: "Set a parameter value for the specified FMOD event.",
   params: [
     {

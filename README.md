@@ -1,9 +1,9 @@
 <img src="./examples/cover.webp" width="150" /><br>
 # (FMOD)
 <i>FMOD Studio integration for Construct 3</i> <br>
-### Version 2.1.3.1
+### Version 2.1.3.3
 
-[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-2.1.3.1.c3addon/skymen_fmod-2.1.3.1.c3addon)
+[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-2.1.3.3.c3addon/skymen_fmod-2.1.3.3.c3addon)
 <br>
 <sub> [See all releases](https://github.com/skymen/fmod_sdkv2/releases) </sub> <br>
 
@@ -83,10 +83,10 @@ npm run dev
 | Set Listener Simple Attributes From Scroll Position | Set the simple attributes of the specified FMOD listener from the scroll position. | Id             *(number)* <br> |
 | Set Listener Weight | Set the weight of the specified FMOD listener. | Id             *(number)* <br>Weight             *(number)* <br> |
 | Set Nb Listeners | Set the number of FMOD listeners. | Nb             *(number)* <br> |
-| Set Event Parameter | Set a parameter value for the specified FMOD event. | Name             *(string)* <br>Tag             *(string)* <br>Parameter             *(string)* <br>Value             *(number)* <br>Ignore seek speed             *(boolean)* <br> |
-| Set Event Parameter With Label | Set a parameter value for the specified FMOD event, using the parameter label instead of the parameter name. | Name             *(string)* <br>Tag             *(string)* <br>Parameter             *(string)* <br>Value             *(string)* <br>Ignore seek speed             *(boolean)* <br> |
-| Set Global Parameter | Set a global parameter value for FMOD. | Parameter             *(string)* <br>Value             *(number)* <br>Ignore seek speed             *(boolean)* <br> |
-| Set Global Parameter With Label | Set a global parameter value for FMOD, using the parameter label instead of the parameter name. | Parameter             *(string)* <br>Value             *(string)* <br>Ignore seek speed             *(boolean)* <br> |
+| Set Event Parameter | Set a parameter value for the specified FMOD event. | Name             *(string)* <br>Tag             *(string)* <br>Parameter             *(string)* <br>Use Id             *(boolean)* <br>Value             *(number)* <br>Ignore seek speed             *(boolean)* <br> |
+| Set Event Parameter With Label | Set a parameter value for the specified FMOD event, using the parameter label instead of the parameter name. | Name             *(string)* <br>Tag             *(string)* <br>Parameter             *(string)* <br>Use Id             *(boolean)* <br>Value             *(string)* <br>Ignore seek speed             *(boolean)* <br> |
+| Set Global Parameter | Set a global parameter value for FMOD. | Parameter             *(string)* <br>Use Id             *(boolean)* <br>Value             *(number)* <br>Ignore seek speed             *(boolean)* <br> |
+| Set Global Parameter With Label | Set a global parameter value for FMOD, using the parameter label instead of the parameter name. | Parameter             *(string)* <br>Use Id             *(boolean)* <br>Value             *(string)* <br>Ignore seek speed             *(boolean)* <br> |
 | Set Event 3D Attributes | Set the 3D attributes of the specified FMOD event. | Name             *(string)* <br>Tag             *(string)* <br>X             *(number)* <br>Y             *(number)* <br>Z             *(number)* <br>Velocity X             *(number)* <br>Velocity Y             *(number)* <br>Velocity Z             *(number)* <br>Forward X             *(number)* <br>Forward Y             *(number)* <br>Forward Z             *(number)* <br>Up X             *(number)* <br>Up Y             *(number)* <br>Up Z             *(number)* <br> |
 | Set Event 3D Attributes From Object | Set the 3D attributes of the specified FMOD event from the specified object. | Name             *(string)* <br>Tag             *(string)* <br>Object             *(object)* <br>Image Point             *(any)* <br>Forward Mode             *(combo)* <br>Velocity X             *(number)* <br>Velocity Y             *(number)* <br>Velocity Z             *(number)* <br> |
 | Set Event Simple Attributes | Set the 3D attributes of the specified FMOD event. | Name             *(string)* <br>Tag             *(string)* <br>X             *(number)* <br>Y             *(number)* <br>Z             *(number)* <br> |

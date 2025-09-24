@@ -3,7 +3,7 @@ export const config = {
   isAsync: true,
   listName: "Set Event Parameter With Label",
   displayText:
-    "Set event parameter [i]{2}[/i] on event [i]{0}[/i] with tags [i]{1}[/i] to label [i]{3}[/i] (ignore seek speed: [i]{4}[/i])",
+    "Set event parameter [i]{2}[/i] on event [i]{0}[/i] with tags [i]{1}[/i] to label [i]{4}[/i] (ignore seek speed: [i]{5}[/i], use Id: [i]{3}[/i])",
   description:
     "Set a parameter value for the specified FMOD event, using the parameter label instead of the parameter name.",
   params: [

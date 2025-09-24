@@ -3,7 +3,7 @@ export const config = {
   isAsync: true,
   listName: "Set Global Parameter With Label",
   displayText:
-    "Set global parameter [i]{0}[/i] to label [i]{1}[/i] (ignore seek speed: [i]{2}[/i])",
+    "Set global parameter [i]{0}[/i] to label [i]{2}[/i] (ignore seek speed: [i]{3}[/i], use Id: [i]{1}[/i])",
   description:
     "Set a global parameter value for FMOD, using the parameter label instead of the parameter name.",
   params: [
