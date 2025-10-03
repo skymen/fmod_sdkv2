@@ -175,7 +175,9 @@ export default function (parentClass) {
       imagePoint,
       forwardMode,
       autoVelocity,
-      autoDestroy = true
+      autoDestroy = true,
+      allowFadeOut = true,
+      release = true
     ) {
       if (!this.curInst) return;
       const key = `${name}/${tag}`;
@@ -212,13 +214,14 @@ export default function (parentClass) {
         .then(() => {
           this.tickCallbacks.delete(key);
           this.oldPositionKeeper.delete(inst);
+          if (release) this.ReleaseEventInstance(name, tag);
         });
 
       inst.addEventListener("destroy", () => {
         this.tickCallbacks.delete(key);
         this.oldPositionKeeper.delete(inst);
         if (autoDestroy) {
-          this.curInst.SendMessageAsync("stop-event", [name, tag, true, true]);
+          this.StopEventInstance(name, tag, allowFadeOut, release);
         }
       });
     }

@@ -61,10 +61,24 @@ export const config = {
       type: "boolean",
       initialValue: "false",
     },
+    {
+      id: "autoDestroy",
+      name: "Auto Destroy",
+      desc: "Automatically stop and destroy the event when the object is destroyed",
+      type: "boolean",
+      initialValue: "true",
+    },
+    {
+      id: "allowFadeOut",
+      name: "Allow Fade Out",
+      desc: "Allow the event to fade out when stopped",
+      type: "boolean",
+      initialValue: "true",
+    },
   ],
   listName: "Start Event At Object",
   displayText:
-    "Start event [i]{0}[/i] with tag [i]{1}[/i] at object [i]{2}[/i] at image point [i]{3}[/i] (destroy: [i]{4}[/i], forward mode: [i]{5}[/i], autoUpdate: [i]{6}[/i], autoVelocity: [i]{7}[/i])",
+    "Start event [i]{0}[/i] with tag [i]{1}[/i] at object [i]{2}[/i] at image point [i]{3}[/i] (destroy: [i]{4}[/i], forward mode: [i]{5}[/i], auto update: [i]{6}[/i], auto velocity: [i]{7}[/i], allow fade out: [i]{8}[/i])",
   description: "Start the specified FMOD event at the specified object.",
 };
 
@@ -78,7 +92,9 @@ export default async function (
   destroyWhenStopped,
   forwardMode,
   autoUpdate,
-  autoVelocity
+  autoVelocity,
+  autoDestroy,
+  allowFadeOut
 ) {
   if (!this.curInst) return;
   // reusing actions that are already implemented
@@ -103,6 +119,8 @@ export default async function (
       imagePoint,
       forwardMode,
       autoVelocity,
+      autoDestroy,
+      allowFadeOut,
       destroyWhenStopped
     );
   }

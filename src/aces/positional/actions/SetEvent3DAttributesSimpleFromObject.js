@@ -4,7 +4,7 @@ export const config = {
   isAsync: true,
   listName: "Set Event Simple Attributes From Object",
   displayText:
-    "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes from object [i]{2}[/i] at image point [i]{3}[/i] (forward mode: [i]{4}[/i], autoUpdate: [i]{5}[/i], autoVelocity: [i]{6}[/i], autoDestroy: [i]{7}[/i])",
+    "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes from object [i]{2}[/i] at image point [i]{3}[/i] (forward mode: [i]{4}[/i], auto update: [i]{5}[/i], auto velocity: [i]{6}[/i], auto destroy: [i]{7}[/i], allow fade out: [i]{8}[/i])",
   description:
     "Set the 3D attributes of the specified FMOD event from the specified object.",
   params: [
@@ -67,6 +67,13 @@ export const config = {
       type: "boolean",
       initialValue: "true",
     },
+    {
+      id: "allowFadeOut",
+      name: "Allow Fade Out",
+      desc: "Allow the event to fade out when stopped",
+      type: "boolean",
+      initialValue: "true",
+    },
   ],
 };
 
@@ -80,7 +87,8 @@ export default async function (
   forwardMode,
   autoUpdate,
   autoVelocity,
-  autoDestroy
+  autoDestroy,
+  allowFadeOut
 ) {
   if (!this.curInst) return;
   const inst = objectClass.getFirstPickedInstance();
@@ -102,7 +110,9 @@ export default async function (
       imagePoint,
       forwardMode,
       autoVelocity,
-      autoDestroy
+      autoDestroy,
+      allowFadeOut,
+      true //release
     );
   }
 }
