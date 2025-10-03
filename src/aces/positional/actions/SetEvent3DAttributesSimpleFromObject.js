@@ -4,7 +4,7 @@ export const config = {
   isAsync: true,
   listName: "Set Event Simple Attributes From Object",
   displayText:
-    "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes from object [i]{2}[/i] at image point [i]{3}[/i] (forward mode: [i]{4}[/i], autoUpdate: [i]{5}[/i], autoVelocity: [i]{6}[/i])",
+    "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes from object [i]{2}[/i] at image point [i]{3}[/i] (forward mode: [i]{4}[/i], autoUpdate: [i]{5}[/i], autoVelocity: [i]{6}[/i], autoDestroy: [i]{7}[/i])",
   description:
     "Set the 3D attributes of the specified FMOD event from the specified object.",
   params: [
@@ -60,6 +60,13 @@ export const config = {
       type: "boolean",
       initialValue: "false",
     },
+    {
+      id: "autoDestroy",
+      name: "Auto Destroy",
+      desc: "Automatically stop the event when the object is destroyed (only if autoUpdate is enabled)",
+      type: "boolean",
+      initialValue: "true",
+    },
   ],
 };
 
@@ -72,7 +79,8 @@ export default async function (
   imagePoint,
   forwardMode,
   autoUpdate,
-  autoVelocity
+  autoVelocity,
+  autoDestroy
 ) {
   if (!this.curInst) return;
   const inst = objectClass.getFirstPickedInstance();
@@ -93,7 +101,8 @@ export default async function (
       inst,
       imagePoint,
       forwardMode,
-      autoVelocity
+      autoVelocity,
+      autoDestroy
     );
   }
 }

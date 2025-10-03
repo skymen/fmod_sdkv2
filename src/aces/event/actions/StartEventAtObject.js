@@ -83,7 +83,7 @@ export default async function (
   if (!this.curInst) return;
   // reusing actions that are already implemented
   const inst = objectClass.getFirstPickedInstance();
-  this.StartEvent(name, tag, destroyWhenStopped);
+  this.StartEvent(name, tag, destroyWhenStopped && autoUpdate === false);
   await this._SetEvent3DAttributesFromObject(
     name,
     tag,
@@ -102,7 +102,8 @@ export default async function (
       inst,
       imagePoint,
       forwardMode,
-      autoVelocity
+      autoVelocity,
+      destroyWhenStopped
     );
   }
 }

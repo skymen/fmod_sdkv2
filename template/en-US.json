@@ -811,7 +811,7 @@
           },
           "SetEventSimpleAttributesFromObject": {
             "list-name": "Set Event Simple Attributes From Object",
-            "display-text": "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes from object [i]{2}[/i] at image point [i]{3}[/i] (forward mode: [i]{4}[/i], autoUpdate: [i]{5}[/i], autoVelocity: [i]{6}[/i])",
+            "display-text": "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes from object [i]{2}[/i] at image point [i]{3}[/i] (forward mode: [i]{4}[/i], autoUpdate: [i]{5}[/i], autoVelocity: [i]{6}[/i], autoDestroy: [i]{7}[/i])",
             "description": "Set the 3D attributes of the specified FMOD event from the specified object.",
             "params": {
               "name": {
@@ -845,6 +845,10 @@
               "autoVelocity": {
                 "name": "Auto Velocity",
                 "desc": "Automatically update the event's velocity with the object"
+              },
+              "autoDestroy": {
+                "name": "Auto Destroy",
+                "desc": "Automatically stop the event when the object is destroyed (only if autoUpdate is enabled)"
               }
             }
           },

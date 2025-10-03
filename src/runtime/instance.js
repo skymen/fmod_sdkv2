@@ -174,7 +174,8 @@ export default function (parentClass) {
       inst,
       imagePoint,
       forwardMode,
-      autoVelocity
+      autoVelocity,
+      autoDestroy = true
     ) {
       if (!this.curInst) return;
       const key = `${name}/${tag}`;
@@ -212,6 +213,14 @@ export default function (parentClass) {
           this.tickCallbacks.delete(key);
           this.oldPositionKeeper.delete(inst);
         });
+
+      inst.addEventListener("destroy", () => {
+        this.tickCallbacks.delete(key);
+        this.oldPositionKeeper.delete(inst);
+        if (autoDestroy) {
+          this.curInst.SendMessageAsync("stop-event", [name, tag, true, true]);
+        }
+      });
     }
 
     removeAllEvent3DAutoUpdate(name) {
