@@ -228,7 +228,7 @@
           },
           "StartEventAtObject": {
             "list-name": "Start Event At Object",
-            "display-text": "Start event [i]{0}[/i] with tag [i]{1}[/i] at object [i]{2}[/i] at image point [i]{3}[/i] (destroy: [i]{4}[/i], forward mode: [i]{5}[/i], autoUpdate: [i]{6}[/i], autoVelocity: [i]{7}[/i])",
+            "display-text": "Start event [i]{0}[/i] with tag [i]{1}[/i] at object [i]{2}[/i] at image point [i]{3}[/i] (destroy: [i]{4}[/i], forward mode: [i]{5}[/i], auto update: [i]{6}[/i], auto velocity: [i]{7}[/i], auto destroy: [i]{8}[/i], allow fade out: [i]{9}[/i])",
             "description": "Start the specified FMOD event at the specified object.",
             "params": {
               "name": {
@@ -266,6 +266,14 @@
               "autoVelocity": {
                 "name": "Auto Velocity",
                 "desc": "Automatically update the event's velocity with the object"
+              },
+              "autoDestroy": {
+                "name": "Auto Destroy",
+                "desc": "Automatically stop and destroy the event when the object is destroyed"
+              },
+              "allowFadeOut": {
+                "name": "Allow Fade Out",
+                "desc": "Allow the event to fade out when stopped"
               }
             }
           },
@@ -811,7 +819,7 @@
           },
           "SetEventSimpleAttributesFromObject": {
             "list-name": "Set Event Simple Attributes From Object",
-            "display-text": "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes from object [i]{2}[/i] at image point [i]{3}[/i] (forward mode: [i]{4}[/i], autoUpdate: [i]{5}[/i], autoVelocity: [i]{6}[/i], autoDestroy: [i]{7}[/i])",
+            "display-text": "Set event [i]{0}[/i] with tag [i]{1}[/i] 3D attributes from object [i]{2}[/i] at image point [i]{3}[/i] (forward mode: [i]{4}[/i], auto update: [i]{5}[/i], auto velocity: [i]{6}[/i], auto destroy: [i]{7}[/i], allow fade out: [i]{8}[/i])",
             "description": "Set the 3D attributes of the specified FMOD event from the specified object.",
             "params": {
               "name": {
@@ -849,6 +857,10 @@
               "autoDestroy": {
                 "name": "Auto Destroy",
                 "desc": "Automatically stop the event when the object is destroyed (only if autoUpdate is enabled)"
+              },
+              "allowFadeOut": {
+                "name": "Allow Fade Out",
+                "desc": "Allow the event to fade out when stopped"
               }
             }
           },

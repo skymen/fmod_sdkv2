@@ -1,9 +1,9 @@
 <img src="./examples/cover.webp" width="150" /><br>
 # (FMOD)
 <i>FMOD Studio integration for Construct 3</i> <br>
-### Version 2.1.3.4
+### Version 2.1.3.6
 
-[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-2.1.3.4.c3addon/skymen_fmod-2.1.3.4.c3addon)
+[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-2.1.3.6.c3addon/skymen_fmod-2.1.3.6.c3addon)
 <br>
 <sub> [See all releases](https://github.com/skymen/fmod_sdkv2/releases) </sub> <br>
 
@@ -69,7 +69,7 @@ npm run dev
 | Set Event Paused | Set the paused state of the specified FMOD event. | Name             *(string)* <br>Tag             *(string)* <br>Paused             *(boolean)* <br> |
 | Set Event Timeline position | Set the paused state of the specified FMOD event. | Name             *(string)* <br>Tag             *(string)* <br>Timeline Position             *(number)* <br> |
 | Start Event | Start the specified FMOD event. | Name             *(string)* <br>Tag             *(string)* <br>Release             *(boolean)* <br> |
-| Start Event At Object | Start the specified FMOD event at the specified object. | Name             *(string)* <br>Tag             *(string)* <br>Object             *(object)* <br>Image Point             *(any)* <br>Release             *(boolean)* <br>Forward Mode             *(combo)* <br>Auto Update             *(boolean)* <br>Auto Velocity             *(boolean)* <br> |
+| Start Event At Object | Start the specified FMOD event at the specified object. | Name             *(string)* <br>Tag             *(string)* <br>Object             *(object)* <br>Image Point             *(any)* <br>Release             *(boolean)* <br>Forward Mode             *(combo)* <br>Auto Update             *(boolean)* <br>Auto Velocity             *(boolean)* <br>Auto Destroy             *(boolean)* <br>Allow Fade Out             *(boolean)* <br> |
 | Start One Time Event | Start the specified FMOD event as a one-time event. This instance will be released immediately. | Name             *(string)* <br> |
 | Stop All Event Instances | Stop all FMOD event instances from one specific event. | Name             *(string)* <br>Allow fade out             *(boolean)* <br>Release             *(boolean)* <br> |
 | Stop All Events | Stop all FMOD events. | Allow fade out             *(boolean)* <br>Release             *(boolean)* <br> |
@@ -90,7 +90,7 @@ npm run dev
 | Set Event 3D Attributes | Set the 3D attributes of the specified FMOD event. | Name             *(string)* <br>Tag             *(string)* <br>X             *(number)* <br>Y             *(number)* <br>Z             *(number)* <br>Velocity X             *(number)* <br>Velocity Y             *(number)* <br>Velocity Z             *(number)* <br>Forward X             *(number)* <br>Forward Y             *(number)* <br>Forward Z             *(number)* <br>Up X             *(number)* <br>Up Y             *(number)* <br>Up Z             *(number)* <br> |
 | Set Event 3D Attributes From Object | Set the 3D attributes of the specified FMOD event from the specified object. | Name             *(string)* <br>Tag             *(string)* <br>Object             *(object)* <br>Image Point             *(any)* <br>Forward Mode             *(combo)* <br>Velocity X             *(number)* <br>Velocity Y             *(number)* <br>Velocity Z             *(number)* <br> |
 | Set Event Simple Attributes | Set the 3D attributes of the specified FMOD event. | Name             *(string)* <br>Tag             *(string)* <br>X             *(number)* <br>Y             *(number)* <br>Z             *(number)* <br> |
-| Set Event Simple Attributes From Object | Set the 3D attributes of the specified FMOD event from the specified object. | Name             *(string)* <br>Tag             *(string)* <br>Object             *(object)* <br>Image Point             *(any)* <br>Forward Mode             *(combo)* <br>Auto Update             *(boolean)* <br>Auto Velocity             *(boolean)* <br>Auto Destroy             *(boolean)* <br> |
+| Set Event Simple Attributes From Object | Set the 3D attributes of the specified FMOD event from the specified object. | Name             *(string)* <br>Tag             *(string)* <br>Object             *(object)* <br>Image Point             *(any)* <br>Forward Mode             *(combo)* <br>Auto Update             *(boolean)* <br>Auto Velocity             *(boolean)* <br>Auto Destroy             *(boolean)* <br>Allow Fade Out             *(boolean)* <br> |
 | Set VCA Volume | Set the volume of the specified FMOD VCA. | Name             *(string)* <br>Volume             *(number)* <br> |
 
 

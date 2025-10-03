@@ -78,7 +78,7 @@ export const config = {
   ],
   listName: "Start Event At Object",
   displayText:
-    "Start event [i]{0}[/i] with tag [i]{1}[/i] at object [i]{2}[/i] at image point [i]{3}[/i] (destroy: [i]{4}[/i], forward mode: [i]{5}[/i], auto update: [i]{6}[/i], auto velocity: [i]{7}[/i], allow fade out: [i]{8}[/i])",
+    "Start event [i]{0}[/i] with tag [i]{1}[/i] at object [i]{2}[/i] at image point [i]{3}[/i] (destroy: [i]{4}[/i], forward mode: [i]{5}[/i], auto update: [i]{6}[/i], auto velocity: [i]{7}[/i], auto destroy: [i]{8}[/i], allow fade out: [i]{9}[/i])",
   description: "Start the specified FMOD event at the specified object.",
 };
 
