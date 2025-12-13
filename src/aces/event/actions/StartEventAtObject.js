@@ -99,10 +99,16 @@ export default async function (
   if (!this.curInst) return;
   // reusing actions that are already implemented
   const inst = objectClass.getFirstPickedInstance();
-  this.StartEvent(name, tag, destroyWhenStopped && autoUpdate === false);
+  const id = await this.StartEvent(name, tag, destroyWhenStopped);
+  if (!id) {
+    console.warn(
+      `FMOD: Could not get ID for event '${name}' with tag '${tag}'`
+    );
+    return;
+  }
   await this._SetEvent3DAttributesFromObject(
     name,
-    tag,
+    id,
     inst,
     imagePoint,
     forwardMode,
@@ -114,14 +120,13 @@ export default async function (
   if (autoUpdate) {
     this.addEvent3DAutoUpdate(
       name,
-      tag,
+      id,
       inst,
       imagePoint,
       forwardMode,
       autoVelocity,
       autoDestroy,
-      allowFadeOut,
-      destroyWhenStopped
+      allowFadeOut
     );
   }
 }

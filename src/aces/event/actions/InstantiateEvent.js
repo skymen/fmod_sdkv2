@@ -28,5 +28,5 @@ export const expose = true;
 
 export default async function (name, tags) {
   if (!this.curInst) return;
-  await this.curInst.SendMessageAsync("instantiate-event", [name, tags]);
+  return await this.curInst.SendMessageAsync("instantiate-event", [name, tags]);
 }

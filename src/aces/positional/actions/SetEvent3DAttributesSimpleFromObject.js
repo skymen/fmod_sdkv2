@@ -111,8 +111,7 @@ export default async function (
       forwardMode,
       autoVelocity,
       autoDestroy,
-      allowFadeOut,
-      true //release
+      allowFadeOut
     );
   }
 }

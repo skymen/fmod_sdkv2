@@ -35,7 +35,7 @@ export const expose = true;
 
 export default async function (name, tag, destroyWhenStopped) {
   if (!this.curInst) return;
-  await this.curInst.SendMessageAsync("start-event", [
+  return await this.curInst.SendMessageAsync("start-event", [
     name,
     tag,
     destroyWhenStopped,

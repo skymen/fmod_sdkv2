@@ -163,8 +163,22 @@ export default function (parentClass) {
       );
     }
 
+    instIsDestroyed(inst) {
+      return this.runtime.getInstanceByUid(inst.uid) === null;
+    }
+
     getPositionFromObject(inst, imagePoint) {
-      if (inst.getImagePoint) return inst.getImagePoint(imagePoint);
+      if (this.instIsDestroyed(inst)) {
+        let value;
+        try {
+          value = [inst.x, inst.y, inst.zElevation];
+        } catch (e) {
+          value = this.oldPositionKeeper.get(inst) || [0, 0, 0];
+        }
+        return value;
+      }
+      if (inst.getImagePoint && imagePoint)
+        return inst.getImagePoint(imagePoint);
       return [inst.x, inst.y, inst.totalZElevation];
     }
 
@@ -176,10 +190,10 @@ export default function (parentClass) {
       forwardMode,
       autoVelocity,
       autoDestroy = true,
-      allowFadeOut = true,
-      release = true
+      allowFadeOut = true
     ) {
       if (!this.curInst) return;
+      if (this.instIsDestroyed(inst)) return;
       const key = `${name}/${tag}`;
       if (this.tickCallbacks.has(key)) {
         this.tickCallbacks.delete(key);
@@ -188,16 +202,27 @@ export default function (parentClass) {
         let vx = 0;
         let vy = 0;
         let vz = 0;
+        const oldPosition = this.oldPositionKeeper.get(inst);
+        const [x, y, z] = this.getPositionFromObject(inst, imagePoint);
         if (autoVelocity) {
-          const oldPosition = this.oldPositionKeeper.get(inst);
-          const [x, y, z] = this.getPositionFromObject(inst, imagePoint);
           if (oldPosition) {
             vx = (x - oldPosition[0]) / dt;
             vy = (y - oldPosition[1]) / dt;
             vz = (z - oldPosition[2]) / dt;
           }
-          this.oldPositionKeeper.set(inst, [x, y, z]);
         }
+
+        if (
+          oldPosition &&
+          x === oldPosition[0] &&
+          y === oldPosition[1] &&
+          z === oldPosition[2]
+        ) {
+          return;
+        }
+        console.log("Auto updating FMOD 3D event", name, tag);
+
+        this.oldPositionKeeper.set(inst, [x, y, z]);
         this._SetEvent3DAttributesFromObject(
           name,
           tag,
@@ -212,16 +237,19 @@ export default function (parentClass) {
       this.curInst
         .SendMessageAsync("wait-for-event-stop", [name, tag])
         .then(() => {
+          if (!this.tickCallbacks.has(key)) return;
+          console.log("Event stopped, removing auto update", name, tag);
           this.tickCallbacks.delete(key);
           this.oldPositionKeeper.delete(inst);
-          if (release) this.ReleaseEventInstance(name, tag);
         });
 
       inst.addEventListener("destroy", () => {
+        if (!this.tickCallbacks.has(key)) return;
+        console.log("Object destroyed, removing auto update", name, tag);
         this.tickCallbacks.delete(key);
         this.oldPositionKeeper.delete(inst);
         if (autoDestroy) {
-          this.StopEventInstance(name, tag, allowFadeOut, release);
+          this.StopEventInstance(name, tag, allowFadeOut, false);
         }
       });
     }

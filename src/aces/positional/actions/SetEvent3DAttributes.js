@@ -127,6 +127,7 @@ export default async function (
   uy,
   uz
 ) {
+  if (!tag) debugger;
   if (!this.curInst) return;
   await this.curInst.SendMessageAsync("set-event-3d-attributes", [
     name,
