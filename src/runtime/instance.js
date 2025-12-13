@@ -7,6 +7,7 @@ export default function (parentClass) {
       const properties = this._getInitProperties();
       this.allBanks = [];
       this.autoSuspend = true;
+      this.preloadSampleData = false;
       this.tickCallbacks = new Map();
       this.oldPositionKeeper = new WeakMap();
       this.advancedSettings = {};
@@ -15,9 +16,10 @@ export default function (parentClass) {
         const allBanks = properties[0].split("\n");
         const preloadBanks = properties[1].split("\n");
         const preloadBanksNonBlocking = properties[2].split("\n");
-        this.autoSuspend = properties[3];
+        this.preloadSampleData = properties[3];
+        this.autoSuspend = properties[4];
         try {
-          this.advancedSettings = JSON.parse(properties[4]);
+          this.advancedSettings = JSON.parse(properties[5]);
         } catch (e) {}
         (async () => {
           for (let i = 0; i < allBanks.length; i++) {
@@ -309,6 +311,7 @@ export default function (parentClass) {
             bank.nonBlocking,
             bank.name,
             bank.url,
+            this.preloadSampleData,
           ]);
         })
       );

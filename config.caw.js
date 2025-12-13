@@ -139,6 +139,15 @@ export const properties = [
   },
   {
     type: "check",
+    id: "preloadSampleData",
+    options: {
+      initialValue: true,
+    },
+    name: "Load Sample Data",
+    desc: "Whether to load sample data for preloaded banks. This can increase loading time but improves initial playback.",
+  },
+  {
+    type: "check",
     id: "autoSuspend",
     options: {
       initialValue: true,

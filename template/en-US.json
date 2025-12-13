@@ -30,6 +30,10 @@
             "name": "Load Banks (Non Blocking)",
             "desc": "The banks that will be loaded as soon as possible but will not prevent the game from starting. One bank path per line."
           },
+          "preloadSampleData": {
+            "name": "Load Sample Data",
+            "desc": "Whether to load sample data for preloaded banks. This can increase loading time but improves initial playback."
+          },
           "autoSuspend": {
             "name": "Auto Suspend",
             "desc": "Automatically suspend FMOD when the game is suspended. Disable this if you want to control the suspend state manually."
@@ -42,8 +46,23 @@
         "actions": {
           "LoadBank": {
             "list-name": "Load Bank",
-            "display-text": "Load bank [i]{0}[/i]",
+            "display-text": "Load bank [i]{0}[/i] (load sample data: [i]{1}[/i])",
             "description": "Load the specified FMOD bank.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": "The name of the bank"
+              },
+              "loadSampleData": {
+                "name": "Load Sample Data",
+                "desc": "Whether to load sample data for the bank"
+              }
+            }
+          },
+          "LoadBankSampleData": {
+            "list-name": "Load Bank Sample Data",
+            "display-text": "Load sample data for bank [i]{0}[/i]",
+            "description": "Load sample data for the specified FMOD bank.",
             "params": {
               "name": {
                 "name": "Name",
@@ -61,6 +80,17 @@
             "list-name": "Unload Bank",
             "display-text": "Unload bank [i]{0}[/i]",
             "description": "Unload the specified FMOD bank.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": "The name of the bank"
+              }
+            }
+          },
+          "UnloadBankSampleData": {
+            "list-name": "Unload Bank Sample Data",
+            "display-text": "Unload sample data for bank [i]{0}[/i]",
+            "description": "Unload sample data for the specified FMOD bank.",
             "params": {
               "name": {
                 "name": "Name",
@@ -140,6 +170,17 @@
               "tags": {
                 "name": "Tags",
                 "desc": "A space-separated list of tags"
+              }
+            }
+          },
+          "LoadEventSampleData": {
+            "list-name": "Load Event Sample Data",
+            "display-text": "Load sample data for event [i]{0}[/i]",
+            "description": "Load sample data for the specified FMOD event.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": "The name of the event"
               }
             }
           },
@@ -342,6 +383,17 @@
               "release": {
                 "name": "Release",
                 "desc": "Releasing this event will free its memory when it stops playing and will remove it from the tag."
+              }
+            }
+          },
+          "UnloadEventSampleData": {
+            "list-name": "Unload Event Sample Data",
+            "display-text": "Unload sample data for event [i]{0}[/i]",
+            "description": "Unload sample data for the specified FMOD event.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": "The name of the event"
               }
             }
           },
