@@ -1,9 +1,9 @@
 <img src="./examples/cover.webp" width="150" /><br>
 # (FMOD)
 <i>FMOD Studio integration for Construct 3</i> <br>
-### Version 2.2.0.0
+### Version 2.2.1.0
 
-[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-2.2.0.0.c3addon/skymen_fmod-2.2.0.0.c3addon)
+[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-2.2.1.0.c3addon/skymen_fmod-2.2.1.0.c3addon)
 <br>
 <sub> [See all releases](https://github.com/skymen/fmod_sdkv2/releases) </sub> <br>
 
@@ -48,6 +48,7 @@ npm run dev
 | All Banks | All the banks that will be used by the game. One bank path per line. | longtext |
 | Preload Banks | The banks that will be preloaded. One bank path per line. | longtext |
 | Load Banks (Non Blocking) | The banks that will be loaded as soon as possible but will not prevent the game from starting. One bank path per line. | longtext |
+| Load Sample Data | Whether to load sample data for preloaded banks. This can increase loading time but improves initial playback. | check |
 | Auto Suspend | Automatically suspend FMOD when the game is suspended. Disable this if you want to control the suspend state manually. | check |
 | Advanced Settings | Advanced settings for FMOD. See the FMOD documentation for more information. | longtext |
 
@@ -56,14 +57,17 @@ npm run dev
 ## Actions
 | Action | Description | Params
 | --- | --- | --- |
-| Load Bank | Load the specified FMOD bank. | Name             *(string)* <br> |
+| Load Bank | Load the specified FMOD bank. | Name             *(string)* <br>Load Sample Data             *(boolean)* <br> |
+| Load Bank Sample Data | Load sample data for the specified FMOD bank. | Name             *(string)* <br> |
 | Unload All Banks | Unload all FMOD banks. |  |
 | Unload Bank | Unload the specified FMOD bank. | Name             *(string)* <br> |
+| Unload Bank Sample Data | Unload sample data for the specified FMOD bank. | Name             *(string)* <br> |
 | Set Bus Muted | Set the muted state of the specified FMOD bus. | Name             *(string)* <br>Muted             *(boolean)* <br> |
 | Set Bus Paused | Set the paused state of the specified FMOD bus. | Name             *(string)* <br>Paused             *(boolean)* <br> |
 | Set Bus Volume | Set the volume of the specified FMOD bus. | Name             *(string)* <br>Volume             *(number)* <br> |
 | Stop All Bus Events | Stop all events of the specified FMOD bus. | Name             *(string)* <br>Allow Fade Out             *(boolean)* <br> |
 | Instantiate Event | Instantiate the specified FMOD event. This doesn't start it. Use this when you need to change the event parameters before starting it. | Name             *(string)* <br>Tags             *(string)* <br> |
+| Load Event Sample Data | Load sample data for the specified FMOD event. | Name             *(string)* <br> |
 | Release All Event Instances | Release all FMOD event instances. | Name             *(string)* <br> |
 | Release Event Instance | Release the specified FMOD event instance. | Name             *(string)* <br>Tag             *(string)* <br> |
 | Set Event Paused | Set the paused state of the specified FMOD event. | Name             *(string)* <br>Tag             *(string)* <br>Paused             *(boolean)* <br> |
@@ -74,6 +78,7 @@ npm run dev
 | Stop All Event Instances | Stop all FMOD event instances from one specific event. | Name             *(string)* <br>Allow fade out             *(boolean)* <br>Release             *(boolean)* <br> |
 | Stop All Events | Stop all FMOD events. | Allow fade out             *(boolean)* <br>Release             *(boolean)* <br> |
 | Stop Event | Stop the specified FMOD event, with an option to allow fade out. | Name             *(string)* <br>Tag             *(string)* <br>Allow fade out             *(boolean)* <br>Release             *(boolean)* <br> |
+| Unload Event Sample Data | Unload sample data for the specified FMOD event. | Name             *(string)* <br> |
 | Set Auto Suspend | Set the auto suspend state of FMOD. | Auto suspend             *(boolean)* <br> |
 | Set Suspended | Set the suspended state of FMOD. | Suspended             *(boolean)* <br> |
 | Set Listener 3D Attributes | Set the 3D attributes of the specified FMOD listener. | Id             *(number)* <br>X             *(number)* <br>Y             *(number)* <br>Z             *(number)* <br>Velocity X             *(number)* <br>Velocity Y             *(number)* <br>Velocity Z             *(number)* <br>Forward X             *(number)* <br>Forward Y             *(number)* <br>Forward Z             *(number)* <br>Up X             *(number)* <br>Up Y             *(number)* <br>Up Z             *(number)* <br>Has separate attenuation position             *(boolean)* <br>Attenuation X             *(number)* <br>Attenuation Y             *(number)* <br>Attenuation Z             *(number)* <br> |
