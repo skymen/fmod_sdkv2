@@ -7,19 +7,29 @@ export default function (parentClass) {
       const properties = this._getInitProperties();
       this.allBanks = [];
       this.autoSuspend = true;
-      this.preloadSampleData = false;
+      this.preloadSampleData = [];
       this.tickCallbacks = new Map();
       this.oldPositionKeeper = new WeakMap();
       this.advancedSettings = {};
 
       if (properties) {
-        const allBanks = properties[0].split("\n");
-        const preloadBanks = properties[1].split("\n");
+        const allBanks = properties[0]
+          .split("\n")
+          .filter((x) => x && x.trim() !== "");
+        const preloadBanks = properties[1]
+          .split("\n")
+          .filter((x) => x && x.trim() !== "");
         const preloadBanksNonBlocking = properties[2].split("\n");
-        this.preloadSampleData = properties[3];
+        this.preloadSampleData = properties[3]
+          .split("\n")
+          .filter((x) => x && x.trim() !== "");
         this.autoSuspend = properties[4];
+        this.dspBufferSize = properties[5];
+        this.dspBufferCount = properties[6];
+        this.maxChannels = properties[7];
+        this.initialMemory = properties[8];
         try {
-          this.advancedSettings = JSON.parse(properties[5]);
+          this.advancedSettings = JSON.parse(properties[9]);
         } catch (e) {}
         (async () => {
           for (let i = 0; i < allBanks.length; i++) {
@@ -30,6 +40,7 @@ export default function (parentClass) {
               path: bank,
               preload: false,
               nonBlocking: true,
+              loadSampleData: this.preloadSampleData.includes(bank),
               name: bank.split("/").pop(),
               url: await this.runtime.assets.getProjectFileUrl(bank),
             });
@@ -48,6 +59,7 @@ export default function (parentClass) {
                 nonBlocking: false,
                 name: preloadBank.split("/").pop(),
                 url: await this.runtime.assets.getProjectFileUrl(preloadBank),
+                loadSampleData: this.preloadSampleData.includes(preloadBank),
               });
             }
           }
@@ -65,6 +77,7 @@ export default function (parentClass) {
                 nonBlocking: true,
                 name: preloadBank.split("/").pop(),
                 url: await this.runtime.assets.getProjectFileUrl(preloadBank),
+                loadSampleData: this.preloadSampleData.includes(preloadBank),
               });
             }
           }
@@ -311,11 +324,15 @@ export default function (parentClass) {
             bank.nonBlocking,
             bank.name,
             bank.url,
-            this.preloadSampleData,
+            bank.loadSampleData,
           ]);
         })
       );
       await this.curInst.SendMessageAsync("pre-init", {
+        dspBufferSize: this.dspBufferSize,
+        dspBufferCount: this.dspBufferCount,
+        maxChannels: this.maxChannels,
+        initialMemory: this.initialMemory,
         advancedSettings: this.advancedSettings,
       });
     }

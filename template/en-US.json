@@ -32,11 +32,27 @@
           },
           "preloadSampleData": {
             "name": "Load Sample Data",
-            "desc": "Whether to load sample data for preloaded banks. This can increase loading time but improves initial playback."
+            "desc": "Banks for which to load sample data. One bank path per line. This can increase loading time but improves initial playback. Do not include banks with streamed assets."
           },
           "autoSuspend": {
             "name": "Auto Suspend",
             "desc": "Automatically suspend FMOD when the game is suspended. Disable this if you want to control the suspend state manually."
+          },
+          "dspBufferSize": {
+            "name": "DSP Buffer Size",
+            "desc": "The DSP buffer size in samples. A larger buffer size can reduce CPU usage but increases latency."
+          },
+          "dspBufferCount": {
+            "name": "DSP Buffer Count",
+            "desc": "The number of DSP buffers. More buffers can reduce audio dropouts but increases latency."
+          },
+          "maxChannels": {
+            "name": "Max Channels",
+            "desc": "The maximum number of channels that can be played simultaneously."
+          },
+          "initialMemory": {
+            "name": "Initial Memory",
+            "desc": "The initial memory pool size for FMOD in megabytes."
           },
           "advancedSettings": {
             "name": "Advanced Settings",

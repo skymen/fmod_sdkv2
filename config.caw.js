@@ -138,13 +138,13 @@ export const properties = [
     desc: "The banks that will be loaded as soon as possible but will not prevent the game from starting. One bank path per line.",
   },
   {
-    type: "check",
+    type: "longtext",
     id: "preloadSampleData",
     options: {
-      initialValue: true,
+      initialValue: "",
     },
     name: "Load Sample Data",
-    desc: "Whether to load sample data for preloaded banks. This can increase loading time but improves initial playback.",
+    desc: "Banks for which to load sample data. One bank path per line. This can increase loading time but improves initial playback. Do not include banks with streamed assets.",
   },
   {
     type: "check",
@@ -154,6 +154,49 @@ export const properties = [
     },
     name: "Auto Suspend",
     desc: "Automatically suspend FMOD when the game is suspended. Disable this if you want to control the suspend state manually.",
+  },
+  {
+    type: "integer",
+    id: "dspBufferSize",
+    options: {
+      initialValue: 1024,
+      minValue: 16,
+      maxValue: 8192,
+    },
+    name: "DSP Buffer Size",
+    desc: "The DSP buffer size in samples. A larger buffer size can reduce CPU usage but increases latency.",
+  },
+  {
+    type: "integer",
+    id: "dspBufferCount",
+    options: {
+      initialValue: 4,
+      minValue: 1,
+      maxValue: 10,
+    },
+    name: "DSP Buffer Count",
+    desc: "The number of DSP buffers. More buffers can reduce audio dropouts but increases latency.",
+  },
+  {
+    type: "integer",
+    id: "maxChannels",
+    options: {
+      initialValue: 1024,
+      minValue: 32,
+      maxValue: 4096,
+    },
+    name: "Max Channels",
+    desc: "The maximum number of channels that can be played simultaneously.",
+  },
+  {
+    type: "integer",
+    id: "initialMemory",
+    options: {
+      initialValue: 80,
+      minValue: 0,
+    },
+    name: "Initial Memory",
+    desc: "The initial memory pool size for FMOD in megabytes.",
   },
   {
     type: "longtext",
