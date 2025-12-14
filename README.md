@@ -1,9 +1,9 @@
 <img src="./examples/cover.webp" width="150" /><br>
 # (FMOD)
 <i>FMOD Studio integration for Construct 3</i> <br>
-### Version 2.2.1.0
+### Version 2.2.2.0
 
-[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-2.2.1.0.c3addon/skymen_fmod-2.2.1.0.c3addon)
+[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-2.2.2.0.c3addon/skymen_fmod-2.2.2.0.c3addon)
 <br>
 <sub> [See all releases](https://github.com/skymen/fmod_sdkv2/releases) </sub> <br>
 
@@ -48,8 +48,12 @@ npm run dev
 | All Banks | All the banks that will be used by the game. One bank path per line. | longtext |
 | Preload Banks | The banks that will be preloaded. One bank path per line. | longtext |
 | Load Banks (Non Blocking) | The banks that will be loaded as soon as possible but will not prevent the game from starting. One bank path per line. | longtext |
-| Load Sample Data | Whether to load sample data for preloaded banks. This can increase loading time but improves initial playback. | check |
+| Load Sample Data | Banks for which to load sample data. One bank path per line. This can increase loading time but improves initial playback. Do not include banks with streamed assets. | longtext |
 | Auto Suspend | Automatically suspend FMOD when the game is suspended. Disable this if you want to control the suspend state manually. | check |
+| DSP Buffer Size | The DSP buffer size in samples. A larger buffer size can reduce CPU usage but increases latency. | integer |
+| DSP Buffer Count | The number of DSP buffers. More buffers can reduce audio dropouts but increases latency. | integer |
+| Max Channels | The maximum number of channels that can be played simultaneously. | integer |
+| Initial Memory | The initial memory pool size for FMOD in megabytes. | integer |
 | Advanced Settings | Advanced settings for FMOD. See the FMOD documentation for more information. | longtext |
 
 
