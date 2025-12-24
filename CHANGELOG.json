@@ -1,0 +1,7 @@
+{
+  "2.2.3.0": {
+    "added": "Start Event At Position",
+    "changed": "",
+    "fixed": "Bug where Start Event At Object could cause an audio glitch"
+  }
+}

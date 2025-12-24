@@ -1,9 +1,9 @@
 <img src="./examples/cover.webp" width="150" /><br>
 # (FMOD)
 <i>FMOD Studio integration for Construct 3</i> <br>
-### Version 2.2.2.1
+### Version 2.2.3.0
 
-[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-2.2.2.1.c3addon/skymen_fmod-2.2.2.1.c3addon)
+[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-2.2.3.0.c3addon/skymen_fmod-2.2.3.0.c3addon)
 <br>
 <sub> [See all releases](https://github.com/skymen/fmod_sdkv2/releases) </sub> <br>
 
