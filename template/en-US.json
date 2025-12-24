@@ -334,57 +334,6 @@
               }
             }
           },
-          "StartEventAtObjectNew": {
-            "list-name": "Start Event At Object",
-            "display-text": "Start event [i]{0}[/i] with tag [i]{1}[/i] at object [i]{2}[/i] at image point [i]{3}[/i] (destroy: [i]{4}[/i], forward mode: [i]{5}[/i], auto update: [i]{6}[/i], auto velocity: [i]{7}[/i], auto destroy: [i]{8}[/i], allow fade out: [i]{9}[/i])",
-            "description": "Start the specified FMOD event at the specified object.",
-            "params": {
-              "name": {
-                "name": "Name",
-                "desc": "The name of the event"
-              },
-              "tag": {
-                "name": "Tag",
-                "desc": "The tag of the event instance"
-              },
-              "object": {
-                "name": "Object",
-                "desc": "The object to start the event at"
-              },
-              "imagePoint": {
-                "name": "Image Point",
-                "desc": "The image point to start the event at"
-              },
-              "destroyWhenStopped": {
-                "name": "Release",
-                "desc": "Releasing this event will free its memory when it stops playing and will remove it from the tag on the next tick"
-              },
-              "forwardMode": {
-                "name": "Forward Mode",
-                "desc": "The mode to determine the forward vector (Camera or Angle)",
-                "items": {
-                  "camera": "Camera",
-                  "angle": "Angle"
-                }
-              },
-              "autoUpdate": {
-                "name": "Auto Update",
-                "desc": "Automatically update the event's position and orientation with the object"
-              },
-              "autoVelocity": {
-                "name": "Auto Velocity",
-                "desc": "Automatically update the event's velocity with the object"
-              },
-              "autoDestroy": {
-                "name": "Auto Destroy",
-                "desc": "Automatically stop and destroy the event when the object is destroyed"
-              },
-              "allowFadeOut": {
-                "name": "Allow Fade Out",
-                "desc": "Allow the event to fade out when stopped"
-              }
-            }
-          },
           "StartEventAtPosition": {
             "list-name": "Start Event At Position",
             "display-text": "Start event [i]{0}[/i] with tag [i]{1}[/i] at position ([i]{2}[/i], [i]{3}[/i], [i]{4}[/i]) with 3D attributes: velocity: ([i]{5}[/i], [i]{6}[/i], [i]{7}[/i]), forward: ([i]{8}[/i], [i]{9}[/i], [i]{10}[/i]), up: ([i]{11}[/i], [i]{12}[/i], [i]{13}[/i]) (destroy: [i]{14}[/i])",
