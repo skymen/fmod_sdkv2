@@ -99,23 +99,43 @@ export default async function (
   if (!this.curInst) return;
   // reusing actions that are already implemented
   const inst = objectClass.getFirstPickedInstance();
-  const id = await this.StartEvent(name, tag, destroyWhenStopped);
+
+  // Get the 3D attributes from the object
+  const { x, y, z, vx, vy, vz, fx, fy, fz, ux, uy, uz } =
+    this._GetEvent3DAttributesFromObject(
+      inst,
+      imagePoint,
+      forwardMode,
+      0, // vx
+      0, // vy
+      0 // vz
+    );
+
+  // Use the new StartEventAtPosition action
+  const id = await this.StartEventAtPosition(
+    name,
+    tag,
+    x,
+    y,
+    z,
+    vx,
+    vy,
+    vz,
+    fx,
+    fy,
+    fz,
+    ux,
+    uy,
+    uz,
+    destroyWhenStopped
+  );
+
   if (!id) {
     console.warn(
       `FMOD: Could not get ID for event '${name}' with tag '${tag}'`
     );
     return;
   }
-  await this._SetEvent3DAttributesFromObject(
-    name,
-    id,
-    inst,
-    imagePoint,
-    forwardMode,
-    0, //vx,
-    0, //vy,
-    0 //vz
-  );
 
   if (autoUpdate) {
     this.addEvent3DAutoUpdate(

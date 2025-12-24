@@ -1,0 +1,157 @@
+export const config = {
+  highlight: false,
+  isAsync: true,
+  params: [
+    {
+      id: "name",
+      name: "Name",
+      desc: "The name of the event",
+      autocompleteId: "eventName",
+      type: "string",
+      initialValue: "",
+    },
+    {
+      id: "tag",
+      name: "Tag",
+      desc: "The tag of the event instance",
+      autocompleteId: "eventTag",
+      type: "string",
+      initialValue: "",
+    },
+    {
+      id: "x",
+      name: "X",
+      desc: "The X position",
+      type: "number",
+      initialValue: "0",
+    },
+    {
+      id: "y",
+      name: "Y",
+      desc: "The Y position",
+      type: "number",
+      initialValue: "0",
+    },
+    {
+      id: "z",
+      name: "Z",
+      desc: "The Z position",
+      type: "number",
+      initialValue: "0",
+    },
+    {
+      id: "vx",
+      name: "Velocity X",
+      desc: "The X velocity",
+      type: "number",
+      initialValue: "0",
+    },
+    {
+      id: "vy",
+      name: "Velocity Y",
+      desc: "The Y velocity",
+      type: "number",
+      initialValue: "0",
+    },
+    {
+      id: "vz",
+      name: "Velocity Z",
+      desc: "The Z velocity",
+      type: "number",
+      initialValue: "0",
+    },
+    {
+      id: "fx",
+      name: "Forward X",
+      desc: "The X component of the forward vector",
+      type: "number",
+      initialValue: "0",
+    },
+    {
+      id: "fy",
+      name: "Forward Y",
+      desc: "The Y component of the forward vector",
+      type: "number",
+      initialValue: "0",
+    },
+    {
+      id: "fz",
+      name: "Forward Z",
+      desc: "The Z component of the forward vector",
+      type: "number",
+      initialValue: "1",
+    },
+    {
+      id: "ux",
+      name: "Up X",
+      desc: "The X component of the up vector",
+      type: "number",
+      initialValue: "0",
+    },
+    {
+      id: "uy",
+      name: "Up Y",
+      desc: "The Y component of the up vector",
+      type: "number",
+      initialValue: "-1",
+    },
+    {
+      id: "uz",
+      name: "Up Z",
+      desc: "The Z component of the up vector",
+      type: "number",
+      initialValue: "0",
+    },
+    {
+      id: "destroyWhenStopped",
+      name: "Release",
+      desc: "Releasing this event will free its memory when it stops playing and will remove it from the tag on the next tick",
+      type: "boolean",
+      initialValue: "true",
+    },
+  ],
+  listName: "Start Event At Position",
+  displayText:
+    "Start event [i]{0}[/i] with tag [i]{1}[/i] at position ([i]{2}[/i], [i]{3}[/i], [i]{4}[/i]) with 3D attributes: velocity: ([i]{5}[/i], [i]{6}[/i], [i]{7}[/i]), forward: ([i]{8}[/i], [i]{9}[/i], [i]{10}[/i]), up: ([i]{11}[/i], [i]{12}[/i], [i]{13}[/i]) (destroy: [i]{14}[/i])",
+  description:
+    "Start the specified FMOD event at the specified 3D position with velocity and orientation.",
+};
+
+export const expose = true;
+
+export default async function (
+  name,
+  tag,
+  x,
+  y,
+  z,
+  vx,
+  vy,
+  vz,
+  fx,
+  fy,
+  fz,
+  ux,
+  uy,
+  uz,
+  destroyWhenStopped
+) {
+  if (!this.curInst) return;
+  return await this.curInst.SendMessageAsync("start-event-at-position", [
+    name,
+    tag,
+    x,
+    y,
+    z,
+    vx,
+    vy,
+    vz,
+    fx,
+    fy,
+    fz,
+    ux,
+    uy,
+    uz,
+    destroyWhenStopped,
+  ]);
+}

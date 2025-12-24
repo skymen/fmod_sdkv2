@@ -132,17 +132,7 @@ export default function (parentClass) {
       });
     }
 
-    async _SetEvent3DAttributesFromObject(
-      name,
-      tag,
-      inst,
-      imagePoint,
-      forwardMode,
-      vx,
-      vy,
-      vz
-    ) {
-      if (!this.curInst) return;
+    _GetEvent3DAttributesFromObject(inst, imagePoint, forwardMode, vx, vy, vz) {
       const [x, y, z] = this.getPositionFromObject(inst, imagePoint);
       const angle = inst.angle;
       let fx = 0;
@@ -160,15 +150,50 @@ export default function (parentClass) {
           0,
           1,
         ];
+      return { x, y, z, vx, vy, vz, fx, fy, fz, ux, uy, uz };
+    }
+
+    async _SetEvent3DAttributesFromObject(
+      name,
+      tag,
+      inst,
+      imagePoint,
+      forwardMode,
+      vx,
+      vy,
+      vz
+    ) {
+      if (!this.curInst) return;
+      const {
+        x,
+        y,
+        z,
+        vx: _vx,
+        vy: _vy,
+        vz: _vz,
+        fx,
+        fy,
+        fz,
+        ux,
+        uy,
+        uz,
+      } = this._GetEvent3DAttributesFromObject(
+        inst,
+        imagePoint,
+        forwardMode,
+        vx,
+        vy,
+        vz
+      );
       await this.SetEvent3DAttributes(
         name,
         tag,
         x,
         y,
         z,
-        vx,
-        vy,
-        vz,
+        _vx,
+        _vy,
+        _vz,
         fx,
         fy,
         fz,
