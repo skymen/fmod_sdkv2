@@ -3,5 +3,10 @@
     "added": "Start Event At Position",
     "changed": "",
     "fixed": "Bug where Start Event At Object could cause an audio glitch"
+  },
+  "2.2.3.1": {
+    "added": "",
+    "changed": "",
+    "fixed": "Trimmed bank names just in case there is a trailing white space"
   }
 }
