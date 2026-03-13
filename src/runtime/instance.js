@@ -15,14 +15,20 @@ export default function (parentClass) {
       if (properties) {
         const allBanks = properties[0]
           .split("\n")
-          .filter((x) => x && x.trim() !== "");
+          .map((x) => x.trim())
+          .filter((x) => x !== "");
         const preloadBanks = properties[1]
           .split("\n")
-          .filter((x) => x && x.trim() !== "");
-        const preloadBanksNonBlocking = properties[2].split("\n");
+          .map((x) => x.trim())
+          .filter((x) => x !== "");
+        const preloadBanksNonBlocking = properties[2]
+          .split("\n")
+          .map((x) => x.trim())
+          .filter((x) => x !== "");
         this.preloadSampleData = properties[3]
           .split("\n")
-          .filter((x) => x && x.trim() !== "");
+          .map((x) => x.trim())
+          .filter((x) => x !== "");
         this.autoSuspend = properties[4];
         this.dspBufferSize = properties[5];
         this.dspBufferCount = properties[6];
@@ -94,7 +100,7 @@ export default function (parentClass) {
             await this._preInit();
             resolve();
           });
-        })
+        }),
       );
 
       this.runtime.addEventListener("suspend", () => {
@@ -161,7 +167,7 @@ export default function (parentClass) {
       forwardMode,
       vx,
       vy,
-      vz
+      vz,
     ) {
       if (!this.curInst) return;
       const {
@@ -183,7 +189,7 @@ export default function (parentClass) {
         forwardMode,
         vx,
         vy,
-        vz
+        vz,
       );
       await this.SetEvent3DAttributes(
         name,
@@ -199,7 +205,7 @@ export default function (parentClass) {
         fz,
         ux,
         uy,
-        uz
+        uz,
       );
     }
 
@@ -230,7 +236,7 @@ export default function (parentClass) {
       forwardMode,
       autoVelocity,
       autoDestroy = true,
-      allowFadeOut = true
+      allowFadeOut = true,
     ) {
       if (!this.curInst) return;
       if (this.instIsDestroyed(inst)) return;
@@ -271,7 +277,7 @@ export default function (parentClass) {
           forwardMode,
           vx,
           vy,
-          vz
+          vz,
         );
       });
       this.curInst
@@ -351,7 +357,7 @@ export default function (parentClass) {
             bank.url,
             bank.loadSampleData,
           ]);
-        })
+        }),
       );
       await this.curInst.SendMessageAsync("pre-init", {
         dspBufferSize: this.dspBufferSize,
