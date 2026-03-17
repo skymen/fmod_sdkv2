@@ -8,5 +8,10 @@
     "added": "",
     "changed": "",
     "fixed": "Trimmed bank names just in case there is a trailing white space"
+  },
+  "2.2.3.2": {
+    "added": "",
+    "changed": "",
+    "fixed": "removed leftover console logs"
   }
 }
