@@ -266,7 +266,6 @@ export default function (parentClass) {
         ) {
           return;
         }
-        console.log("Auto updating FMOD 3D event", name, tag);
 
         this.oldPositionKeeper.set(inst, [x, y, z]);
         this._SetEvent3DAttributesFromObject(
@@ -284,14 +283,12 @@ export default function (parentClass) {
         .SendMessageAsync("wait-for-event-stop", [name, tag])
         .then(() => {
           if (!this.tickCallbacks.has(key)) return;
-          console.log("Event stopped, removing auto update", name, tag);
           this.tickCallbacks.delete(key);
           this.oldPositionKeeper.delete(inst);
         });
 
       inst.addEventListener("destroy", () => {
         if (!this.tickCallbacks.has(key)) return;
-        console.log("Object destroyed, removing auto update", name, tag);
         this.tickCallbacks.delete(key);
         this.oldPositionKeeper.delete(inst);
         if (autoDestroy) {
