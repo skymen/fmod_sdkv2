@@ -13,5 +13,10 @@
     "added": "",
     "changed": "",
     "fixed": "removed leftover console logs"
+  },
+  "2.2.3.3": {
+    "added": "",
+    "changed": "",
+    "fixed": "Should no longer crash on old versions of C3"
   }
 }
