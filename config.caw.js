@@ -10,6 +10,7 @@ export const type = PLUGIN_TYPE.OBJECT;
 export const id = "skymen_fmod";
 export const name = "(FMOD)";
 export const version = _version;
+export const minConstructVersion = undefined;
 export const author = "skymen";
 export const website = "https://github.com/skymen/fmod_sdkv2";
 export const documentation =

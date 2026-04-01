@@ -7,7 +7,7 @@ import fromConsole from "./fromConsole.js";
 function getFileListFromConfig() {
   const files = [];
   if (config.hasDomside) {
-    files.push("c3runtime/domSide.js");
+    files.push("c3runtime/domside.js");
   }
 
   if (config.files.extensionScript && config.files.extensionScript.enabled) {
@@ -35,6 +35,7 @@ function addonFromConfig() {
   return {
     "is-c3-addon": true,
     "sdk-version": 2,
+    "min-construct-version": config.minConstructVersion,
     type: config.addonType,
     name: config.name,
     id: config.id,

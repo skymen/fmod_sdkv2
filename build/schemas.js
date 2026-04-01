@@ -4,7 +4,7 @@ import Joi from "joi";
 const paramSchema = Joi.object({
   id: Joi.string().required(),
   name: Joi.string().required(),
-  desc: Joi.string().required(),
+  desc: Joi.string().required().allow(""),
   type: Joi.string()
     .required()
     .valid(
@@ -26,6 +26,11 @@ const paramSchema = Joi.object({
       "animation",
       "objinstancevar"
     ),
+  autocompleteId: Joi.string().when("type", {
+    is: "string",
+    then: Joi.string().optional(),
+    otherwise: Joi.forbidden(),
+  }),
 })
   .when(Joi.object({ type: Joi.string().valid("combo") }).unknown(), {
     then: Joi.object({
@@ -36,7 +41,7 @@ const paramSchema = Joi.object({
   })
   .when(Joi.object({ type: Joi.string().valid("object") }).unknown(), {
     then: Joi.object({
-      allowedPluginIds: Joi.array().items(Joi.string()).required(),
+      allowedPluginIds: Joi.array().items(Joi.string()).optional(),
     }),
   })
   .when(
@@ -46,16 +51,6 @@ const paramSchema = Joi.object({
     {
       then: Joi.object({
         initialValue: Joi.string().required().allow(""),
-      }),
-    }
-  )
-  .when(
-    Joi.object({
-      type: Joi.string().valid("string"),
-    }).unknown(),
-    {
-      then: Joi.object({
-        autocompleteId: Joi.string().optional(),
       }),
     }
   );
@@ -92,7 +87,7 @@ const conditionSchema = Joi.object({
 const expressionParamSchema = Joi.object({
   id: Joi.string().required(),
   name: Joi.string().required(),
-  desc: Joi.string().required(),
+  desc: Joi.string().required().allow(""),
   type: Joi.string().required().valid("number", "string", "any"),
 });
 
@@ -122,13 +117,14 @@ const propertySchema = Joi.object({
       "object",
       "group",
       "link",
-      "info"
+      "info",
+      "projectfile"
     )
     .required(),
 
   id: Joi.string().required(),
   name: Joi.string().required(),
-  desc: Joi.string().required(),
+  desc: Joi.string().required().allow(""),
 
   options: Joi.object({
     initialValue: Joi.when("...type", {
@@ -172,7 +168,7 @@ const propertySchema = Joi.object({
     .when("type", {
       is: "object",
       then: Joi.object({
-        allowedPluginIds: Joi.array().items(Joi.string()).required(),
+        allowedPluginIds: Joi.array().items(Joi.string()).optional(),
       }),
     })
     .when("type", {
@@ -189,6 +185,12 @@ const propertySchema = Joi.object({
       is: "info",
       then: Joi.object({
         infoCallback: Joi.function().required(),
+      }),
+    })
+    .when("type", {
+      is: "projectfile",
+      then: Joi.object({
+        filter: Joi.string().optional(),
       }),
     })
     .when("type", {
@@ -218,6 +220,7 @@ const configSchema = Joi.object({
   version: Joi.string()
     .regex(/\d+\.\d+\.\d+\.\d+/)
     .required(),
+  minConstructVersion: Joi.string(),
   author: Joi.string().required(),
   website: Joi.string().required(),
   documentation: Joi.string().required(),
@@ -225,18 +228,22 @@ const configSchema = Joi.object({
   hasDomside: Joi.boolean().required(),
   category: Joi.string()
     .required()
-    .valid(
-      "general",
-      "3d",
-      "data-and-storage",
-      "form-controls",
-      "input",
-      "media",
-      "monetisation",
-      "platform-specific",
-      "web",
-      "other"
-    ),
+    .when("addonType", {
+      is: "behavior",
+      then: Joi.string().valid("attributes", "general", "movements", "other"),
+      otherwise: Joi.string().valid(
+        "3d",
+        "data-and-storage",
+        "form-controls",
+        "general",
+        "input",
+        "media",
+        "monetisation",
+        "platform-specific",
+        "web",
+        "other"
+      ),
+    }),
   files: Joi.object({
     extensionScript: Joi.object({
       enabled: Joi.boolean().required(),
@@ -244,7 +251,7 @@ const configSchema = Joi.object({
       targets: Joi.array().items(Joi.string().valid("x86", "x64")).required(),
       name: Joi.string().optional(),
     })
-      .required()
+      .optional()
       .allow({}),
     fileDependencies: Joi.array()
       .items(
@@ -259,13 +266,51 @@ const configSchema = Joi.object({
               "external-css"
             )
             .required(),
-        }).when(Joi.object({ type: Joi.string().valid("copy-to-output") }), {
-          then: Joi.object({
-            fileType: Joi.string().required(),
-          }),
+        }).when(
+          Joi.object({ type: Joi.string().valid("copy-to-output") }).unknown(),
+          {
+            then: Joi.object({
+              fileType: Joi.string().required(),
+            }),
+          }
+        )
+      )
+      .optional(),
+    remoteFileDependencies: Joi.array()
+      .items(
+        Joi.object({
+          src: Joi.string()
+            .required()
+            .pattern(/^(https:\/\/|\/\/)/, { name: "secure-url" })
+            .message(
+              "Remote script URLs must use https:// or same-protocol // URLs. http:// is not allowed for security reasons."
+            ),
+          type: Joi.string().valid("", "module").optional().allow(""),
         })
       )
-      .required(),
+      .optional(),
+    cordovaPluginReferences: Joi.array()
+      .items(
+        Joi.object({
+          id: Joi.string().required(),
+          version: Joi.string().optional(),
+          platform: Joi.string().valid("all", "ios", "android").optional(),
+          variables: Joi.array()
+            .items(Joi.array().items(Joi.string()).length(2))
+            .optional(),
+          plugin: Joi.function().optional(),
+        })
+      )
+      .optional(),
+    cordovaResourceFiles: Joi.array()
+      .items(
+        Joi.object({
+          src: Joi.string().required(),
+          target: Joi.string().optional(),
+          platform: Joi.string().valid("all", "ios", "android").optional(),
+        })
+      )
+      .optional(),
   }).required(),
   aceCategories: Joi.object().pattern(Joi.string(), Joi.string()).default({}),
   info: Joi.object({
@@ -296,7 +341,7 @@ const configSchema = Joi.object({
     }).required(),
   })
     .required()
-    .when(Joi.object({ type: Joi.string().valid("world") }), {
+    .when(Joi.object({ type: Joi.string().valid("world") }).unknown(), {
       then: Joi.object({
         defaultImageUrl: Joi.string().optional(),
       }),
