@@ -9,7 +9,7 @@
 
 #### What's New in 2.2.4.0
 - **Changed:** - Works with FMOD JS API 2.2, which runs FMOD in a web worker: the per-tick update message is skipped when the implementation updates itself
-- **Changed:** - DSP Buffer Size / DSP Buffer Count descriptions now say what they actually do (buffer count has no effect with the JS API; raising the buffer size is no longer needed to avoid stutter)
+- **Changed:** - DSP Buffer Size / DSP Buffer Count descriptions now say what they actually do (buffer count has no effect with the JS API)
 
 <sub>[View full changelog](#changelog)</sub>
 
@@ -56,8 +56,8 @@ npm run dev
 | Load Banks (Non Blocking) | The banks that will be loaded as soon as possible but will not prevent the game from starting. One bank path per line. | longtext |
 | Load Sample Data | Banks for which to load sample data. One bank path per line. This can increase loading time but improves initial playback. Do not include banks with streamed assets. | longtext |
 | Auto Suspend | Automatically suspend FMOD when the game is suspended. Disable this if you want to control the suspend state manually. | check |
-| DSP Buffer Size | Mixer block size in samples. Larger blocks cost less CPU but add latency and make parameter changes (volume, pitch...) coarser; FMOD recommends leaving it at 1024. Since JS API 2.2 the mixer runs in a worker, so raising it is no longer needed to avoid stutter when the game lags. | integer |
-| DSP Buffer Count | Number of mixer blocks in FMOD's ring buffer. Has no effect with the JS API (the browser's AudioWorklet output ignores it); kept for other implementations. | integer |
+| DSP Buffer Size | Mixer block size in samples. Larger blocks cost less CPU but add latency and make parameter changes (volume, pitch...) coarser. FMOD recommends leaving it at 1024. | integer |
+| DSP Buffer Count | Number of mixer blocks in FMOD's ring buffer. Has no effect with the JS API (the browser's AudioWorklet output ignores it). | integer |
 | Max Channels | The maximum number of channels that can be played simultaneously. | integer |
 | Initial Memory | The initial memory pool size for FMOD in megabytes. | integer |
 | Advanced Settings | Advanced settings for FMOD. See the FMOD documentation for more information. | longtext |
@@ -128,7 +128,7 @@ npm run dev
 
 **2.2.4.0**
 - **Changed:** - Works with FMOD JS API 2.2, which runs FMOD in a web worker: the per-tick update message is skipped when the implementation updates itself
-- **Changed:** - DSP Buffer Size / DSP Buffer Count descriptions now say what they actually do (buffer count has no effect with the JS API; raising the buffer size is no longer needed to avoid stutter)
+- **Changed:** - DSP Buffer Size / DSP Buffer Count descriptions now say what they actually do (buffer count has no effect with the JS API)
 
 **2.2.3.3**
 - **Fixed:** Should no longer crash on old versions of C3

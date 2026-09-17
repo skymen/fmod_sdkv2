@@ -165,7 +165,7 @@ export const properties = [
       maxValue: 8192,
     },
     name: "DSP Buffer Size",
-    desc: "Mixer block size in samples. Larger blocks cost less CPU but add latency and make parameter changes (volume, pitch...) coarser; FMOD recommends leaving it at 1024. Since JS API 2.2 the mixer runs in a worker, so raising it is no longer needed to avoid stutter when the game lags.",
+    desc: "Mixer block size in samples. Larger blocks cost less CPU but add latency and make parameter changes (volume, pitch...) coarser. FMOD recommends leaving it at 1024.",
   },
   {
     type: "integer",
@@ -176,7 +176,7 @@ export const properties = [
       maxValue: 10,
     },
     name: "DSP Buffer Count",
-    desc: "Number of mixer blocks in FMOD's ring buffer. Has no effect with the JS API (the browser's AudioWorklet output ignores it); kept for other implementations.",
+    desc: "Number of mixer blocks in FMOD's ring buffer. Has no effect with the JS API (the browser's AudioWorklet output ignores it).",
   },
   {
     type: "integer",
@@ -212,7 +212,7 @@ export const properties = [
           streamingscheduledelay: 0,
         },
         null,
-        2
+        2,
       ),
     },
     name: "Advanced Settings",

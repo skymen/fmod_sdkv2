@@ -21,7 +21,7 @@
   },
   "2.2.4.0": {
     "added": "",
-    "changed": "- Works with FMOD JS API 2.2, which runs FMOD in a web worker: the per-tick update message is skipped when the implementation updates itself\n- DSP Buffer Size / DSP Buffer Count descriptions now say what they actually do (buffer count has no effect with the JS API; raising the buffer size is no longer needed to avoid stutter)",
+    "changed": "- Works with FMOD JS API 2.2, which runs FMOD in a web worker: the per-tick update message is skipped when the implementation updates itself\n- DSP Buffer Size / DSP Buffer Count descriptions now say what they actually do (buffer count has no effect with the JS API)",
     "fixed": ""
   }
 }
