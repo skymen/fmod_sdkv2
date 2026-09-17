@@ -23,5 +23,10 @@
     "added": "",
     "changed": "- Works with FMOD JS API 2.2, which runs FMOD in a web worker: the per-tick update message is skipped when the implementation updates itself\n- DSP Buffer Size / DSP Buffer Count descriptions now say what they actually do (buffer count has no effect with the JS API)",
     "fixed": ""
+  },
+  "2.2.5.0": {
+    "added": "- On Event Stopped and On Any Event Stopped triggers, with the StoppedEvent and StoppedTag expressions. Fire when an instance ends on its own or is stopped (after the fade out). Needs JS API 2.2.1 or later. Thanks to Orsa for the initial patch\n- Script-side on / off listeners for triggers, like the other CAW addons",
+    "changed": "",
+    "fixed": ""
   }
 }

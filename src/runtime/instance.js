@@ -11,6 +11,8 @@ export default function (parentClass) {
       this.tickCallbacks = new Map();
       this.oldPositionKeeper = new WeakMap();
       this.advancedSettings = {};
+      this.stoppedEventName = "";
+      this.stoppedEventTag = "";
 
       if (properties) {
         const allBanks = properties[0]
@@ -113,7 +115,48 @@ export default function (parentClass) {
     }
 
     _trigger(method) {
+      this.dispatch(method);
       super._trigger(self.C3.Plugins[id].Cnds[method]);
+    }
+
+    // Script-side listeners, same shape as the other CAW addons
+    on(tag, callback, options) {
+      if (!this.events[tag]) {
+        this.events[tag] = [];
+      }
+      this.events[tag].push({ callback, options });
+    }
+
+    off(tag, callback) {
+      if (this.events[tag]) {
+        this.events[tag] = this.events[tag].filter(
+          (event) => event.callback !== callback,
+        );
+      }
+    }
+
+    dispatch(tag) {
+      if (this.events[tag]) {
+        this.events[tag].forEach((event) => {
+          if (event.options && event.options.params) {
+            const fn = self.C3.Plugins[id].Cnds[tag];
+            if (fn && !fn.call(this, ...event.options.params)) {
+              return;
+            }
+          }
+          event.callback();
+          if (event.options && event.options.once) {
+            this.off(tag, event.callback);
+          }
+        });
+      }
+    }
+
+    _onEventStopped({ name, tag }) {
+      this.stoppedEventName = name || "";
+      this.stoppedEventTag = tag || "";
+      this._trigger("OnEventStopped");
+      this._trigger("OnAnyEventStopped");
     }
 
     _release() {
@@ -345,6 +388,12 @@ export default function (parentClass) {
         alert(message);
         throw new Error(message);
       }
+      // Sent by JS API >= 2.2.1 whenever an event instance stops
+      if (this.curInst.HandleMessage)
+        this.curInst.HandleMessage("event-stopped", (data) =>
+          this._onEventStopped(data),
+        );
+
       await Promise.all(
         this.allBanks.map(async (bank) => {
           await this.curInst.SendMessageAsync("pre-init-load-bank", [

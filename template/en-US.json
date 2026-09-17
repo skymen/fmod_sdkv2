@@ -1016,6 +1016,27 @@
           }
         },
         "conditions": {
+          "OnAnyEventStopped": {
+            "list-name": "On Any Event Stopped",
+            "display-text": "On any event stopped",
+            "description": "Triggered when any event instance stops, whether it ended on its own or was stopped. Use StoppedEvent and StoppedTag to know which.",
+            "params": {}
+          },
+          "OnEventStopped": {
+            "list-name": "On Event Stopped",
+            "display-text": "On event [i]{0}[/i] with tag [i]{1}[/i] stopped",
+            "description": "Triggered when an event instance stops, whether it ended on its own or was stopped. Leave the name and/or tag blank to match any.",
+            "params": {
+              "name": {
+                "name": "Name",
+                "desc": "The name of the event, or blank to match any event"
+              },
+              "tag": {
+                "name": "Tag",
+                "desc": "The tag of the event instance, or blank to match any tag"
+              }
+            }
+          },
           "IsInitialised": {
             "list-name": "Is Initialised",
             "display-text": "Is initialised",
@@ -1023,7 +1044,18 @@
             "params": {}
           }
         },
-        "expressions": {}
+        "expressions": {
+          "StoppedEvent": {
+            "translated-name": "StoppedEvent",
+            "description": "The name of the event that last triggered On Event Stopped.",
+            "params": {}
+          },
+          "StoppedTag": {
+            "translated-name": "StoppedTag",
+            "description": "The tag of the event instance that last triggered On Event Stopped. Empty for one-shot events.",
+            "params": {}
+          }
+        }
       }
     }
   }

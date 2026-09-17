@@ -1,15 +1,15 @@
 <img src="./examples/cover.webp" width="150" /><br>
 # (FMOD)
 <i>FMOD Studio integration for Construct 3</i> <br>
-### Version 2.2.4.0
+### Version 2.2.5.0
 
-[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-2.2.4.0.c3addon/skymen_fmod-2.2.4.0.c3addon)
+[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-2.2.5.0.c3addon/skymen_fmod-2.2.5.0.c3addon)
 <br>
 <sub> [See all releases](https://github.com/skymen/fmod_sdkv2/releases) </sub> <br>
 
-#### What's New in 2.2.4.0
-- **Changed:** - Works with FMOD JS API 2.2, which runs FMOD in a web worker: the per-tick update message is skipped when the implementation updates itself
-- **Changed:** - DSP Buffer Size / DSP Buffer Count descriptions now say what they actually do (buffer count has no effect with the JS API)
+#### What's New in 2.2.5.0
+- **Added:** - On Event Stopped and On Any Event Stopped triggers, with the StoppedEvent and StoppedTag expressions. Fire when an instance ends on its own or is stopped (after the fade out). Needs JS API 2.2.1 or later. Thanks to Orsa for the initial patch
+- **Added:** - Script-side on / off listeners for triggers, like the other CAW addons
 
 <sub>[View full changelog](#changelog)</sub>
 
@@ -114,6 +114,8 @@ npm run dev
 ## Conditions
 | Condition | Description | Params
 | --- | --- | --- |
+| On Any Event Stopped | Triggered when any event instance stops, whether it ended on its own or was stopped. Use StoppedEvent and StoppedTag to know which. |  |
+| On Event Stopped | Triggered when an event instance stops, whether it ended on its own or was stopped. Leave the name and/or tag blank to match any. | Name *(string)* <br>Tag *(string)* <br> |
 | Is Initialised | True if FMOD is initialised. |  |
 
 
@@ -121,10 +123,16 @@ npm run dev
 ## Expressions
 | Expression | Description | Return Type | Params
 | --- | --- | --- | --- |
+| StoppedEvent | The name of the event that last triggered On Event Stopped. | string |  | 
+| StoppedTag | The tag of the event instance that last triggered On Event Stopped. Empty for one-shot events. | string |  | 
 
 
 ---
 ## Changelog
+
+**2.2.5.0**
+- **Added:** - On Event Stopped and On Any Event Stopped triggers, with the StoppedEvent and StoppedTag expressions. Fire when an instance ends on its own or is stopped (after the fade out). Needs JS API 2.2.1 or later. Thanks to Orsa for the initial patch
+- **Added:** - Script-side on / off listeners for triggers, like the other CAW addons
 
 **2.2.4.0**
 - **Changed:** - Works with FMOD JS API 2.2, which runs FMOD in a web worker: the per-tick update message is skipped when the implementation updates itself
