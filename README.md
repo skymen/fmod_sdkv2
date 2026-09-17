@@ -1,15 +1,14 @@
 <img src="./examples/cover.webp" width="150" /><br>
 # (FMOD)
 <i>FMOD Studio integration for Construct 3</i> <br>
-### Version 2.2.5.0
+### Version 2.2.5.1
 
-[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-2.2.5.0.c3addon/skymen_fmod-2.2.5.0.c3addon)
+[<img src="https://placehold.co/200x50/4493f8/FFF?text=Download&font=montserrat" width="200"/>](https://github.com/skymen/fmod_sdkv2/releases/download/skymen_fmod-2.2.5.1.c3addon/skymen_fmod-2.2.5.1.c3addon)
 <br>
 <sub> [See all releases](https://github.com/skymen/fmod_sdkv2/releases) </sub> <br>
 
-#### What's New in 2.2.5.0
-- **Added:** - On Event Stopped and On Any Event Stopped triggers, with the StoppedEvent and StoppedTag expressions. Fire when an instance ends on its own or is stopped (after the fade out). Needs JS API 2.2.1 or later. Thanks to Orsa for the initial patch
-- **Added:** - Script-side on / off listeners for triggers, like the other CAW addons
+#### What's New in 2.2.5.1
+- **Fixed:** Set Listener 3D Attributes From Camera threw "getCameraPosition is not a function" (the getters live on the 3D Camera object type) and computed a wrong forward vector
 
 <sub>[View full changelog](#changelog)</sub>
 
@@ -129,6 +128,9 @@ npm run dev
 
 ---
 ## Changelog
+
+**2.2.5.1**
+- **Fixed:** Set Listener 3D Attributes From Camera threw "getCameraPosition is not a function" (the getters live on the 3D Camera object type) and computed a wrong forward vector
 
 **2.2.5.0**
 - **Added:** - On Event Stopped and On Any Event Stopped triggers, with the StoppedEvent and StoppedTag expressions. Fire when an instance ends on its own or is stopped (after the fade out). Needs JS API 2.2.1 or later. Thanks to Orsa for the initial patch

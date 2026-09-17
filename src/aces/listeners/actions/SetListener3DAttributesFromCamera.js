@@ -87,11 +87,15 @@ export default async function (
   az
 ) {
   if (!this.curInst) return;
-  const inst = camera.getFirstInstance();
-  const [x, y, z] = inst.getCameraPosition();
-  const [ux, uy, uz] = inst.getUpVector();
-  const [lx, ly, lz] = inst.getLookVector();
-  const [fx, fy, fz] = [lx - x, ly - y, lz - z];
+  // The camera getters live on the 3D Camera object type (I3DCameraObjectType)
+  const cam =
+    typeof camera.getCameraPosition === "function"
+      ? camera
+      : camera.getFirstInstance();
+  const [x, y, z] = cam.getCameraPosition();
+  // Both already unit length, as FMOD wants them
+  const [ux, uy, uz] = cam.getUpVector();
+  const [fx, fy, fz] = cam.getForwardVector();
   await this.SetListener3DAttributes(
     id,
     x,
