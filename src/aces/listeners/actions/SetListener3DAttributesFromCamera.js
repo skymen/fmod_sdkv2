@@ -84,18 +84,13 @@ export default async function (
   hasSeparateAttenuationPosition,
   ax,
   ay,
-  az
+  az,
 ) {
   if (!this.curInst) return;
-  // The camera getters live on the 3D Camera object type (I3DCameraObjectType)
-  const cam =
-    typeof camera.getCameraPosition === "function"
-      ? camera
-      : camera.getFirstInstance();
-  const [x, y, z] = cam.getCameraPosition();
+  const [x, y, z] = camera.getCameraPosition();
   // Both already unit length, as FMOD wants them
-  const [ux, uy, uz] = cam.getUpVector();
-  const [fx, fy, fz] = cam.getForwardVector();
+  const [ux, uy, uz] = camera.getUpVector();
+  const [fx, fy, fz] = camera.getLookVector();
   await this.SetListener3DAttributes(
     id,
     x,
@@ -113,6 +108,6 @@ export default async function (
     hasSeparateAttenuationPosition,
     ax,
     ay,
-    az
+    az,
   );
 }
