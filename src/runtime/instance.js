@@ -388,7 +388,6 @@ export default function (parentClass) {
         alert(message);
         throw new Error(message);
       }
-      // Sent by JS API >= 2.2.1 whenever an event instance stops
       if (this.curInst.HandleMessage)
         this.curInst.HandleMessage("event-stopped", (data) =>
           this._onEventStopped(data),
