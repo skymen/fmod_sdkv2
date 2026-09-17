@@ -128,7 +128,8 @@ export default function (parentClass) {
 
     _tick() {
       if (!this.curInst) return;
-      this.curInst.SendMessage("update");
+      // JS API >= 2.2 runs FMOD's update on its own clock in a worker
+      if (!this.curInst.selfUpdating) this.curInst.SendMessage("update");
       const dt = this.runtime.dt;
       // go through the values of the tickCallbacks map
       this.tickCallbacks.forEach((callback, key) => {
