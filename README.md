@@ -8,7 +8,7 @@
 <sub> [See all releases](https://github.com/skymen/fmod_sdkv2/releases) </sub> <br>
 
 #### What's New in 2.2.5.1
-- **Fixed:** Set Listener 3D Attributes From Camera threw "getCameraPosition is not a function" (the getters live on the 3D Camera object type) and computed a wrong forward vector
+- **Fixed:** Set Listener 3D Attributes From Camera threw "getCameraPosition is not a function" and used the wrong forward vector
 
 <sub>[View full changelog](#changelog)</sub>
 
@@ -130,7 +130,7 @@ npm run dev
 ## Changelog
 
 **2.2.5.1**
-- **Fixed:** Set Listener 3D Attributes From Camera threw "getCameraPosition is not a function" (the getters live on the 3D Camera object type) and computed a wrong forward vector
+- **Fixed:** Set Listener 3D Attributes From Camera threw "getCameraPosition is not a function" and used the wrong forward vector
 
 **2.2.5.0**
 - **Added:** - On Event Stopped and On Any Event Stopped triggers, with the StoppedEvent and StoppedTag expressions. Fire when an instance ends on its own or is stopped (after the fade out). Needs JS API 2.2.1 or later. Thanks to Orsa for the initial patch

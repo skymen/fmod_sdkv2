@@ -32,6 +32,6 @@
   "2.2.5.1": {
     "added": "",
     "changed": "",
-    "fixed": "Set Listener 3D Attributes From Camera threw \"getCameraPosition is not a function\" (the getters live on the 3D Camera object type) and computed a wrong forward vector"
+    "fixed": "Set Listener 3D Attributes From Camera threw \"getCameraPosition is not a function\" and used the wrong forward vector"
   }
 }
